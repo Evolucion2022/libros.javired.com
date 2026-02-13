@@ -482,7 +482,11 @@ body.page-template-front-page .shop-header__inner {
     position: relative;
     aspect-ratio: 3/4;
     overflow: hidden;
-    background: var(--home-bg-subtle);
+    background: #E8EDE6;
+}
+
+[data-theme="dark"] .home-product-card__image {
+    background: #1a241e;
 }
 
 .home-product-card__image img {
@@ -502,8 +506,12 @@ body.page-template-front-page .shop-header__inner {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, var(--home-bg-subtle), var(--home-bg));
+    background: #E8EDE6;
     color: var(--home-text-faint);
+}
+
+[data-theme="dark"] .home-product-card__image-placeholder {
+    background: #1a241e;
 }
 
 .home-product-card__badge {
