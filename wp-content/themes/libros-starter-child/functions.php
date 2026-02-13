@@ -67,17 +67,24 @@ add_action('wp_enqueue_scripts', function () {
 
 
 /* ──────────────────────────────────────────────
-   4. SHOP PAGE CSS + JS (only on shop/category archive)
+   4. SHOP CSS + JS (all WC pages except checkout — for header/footer)
    ────────────────────────────────────────────── */
 add_action('wp_enqueue_scripts', function () {
-    if (
-        !(function_exists('is_shop') && is_shop()) &&
-        !(function_exists('is_product_taxonomy') && is_product_taxonomy())
-    ) {
+    // Skip checkout (has its own CSS)
+    if (function_exists('is_checkout') && is_checkout())
         return;
-    }
 
-    // Shop CSS
+    // Load on shop, categories, cart, account, and any other WC page
+    $is_wc_page = (function_exists('is_shop') && is_shop())
+        || (function_exists('is_product_taxonomy') && is_product_taxonomy())
+        || (function_exists('is_cart') && is_cart())
+        || (function_exists('is_account_page') && is_account_page())
+        || (function_exists('is_woocommerce') && is_woocommerce());
+
+    if (!$is_wc_page)
+        return;
+
+    // Shop CSS (header, drawer, cards, etc.)
     $css_file = get_stylesheet_directory() . '/assets/css/shop.css';
     if (file_exists($css_file)) {
         wp_enqueue_style(
@@ -88,7 +95,18 @@ add_action('wp_enqueue_scripts', function () {
         );
     }
 
-    // Shop JS
+    // Home CSS (footer styles)
+    $home_css = get_stylesheet_directory() . '/assets/css/home.css';
+    if (file_exists($home_css)) {
+        wp_enqueue_style(
+            'libros-home',
+            get_stylesheet_directory_uri() . '/assets/css/home.css',
+            ['libros-shop'],
+            filemtime($home_css)
+        );
+    }
+
+    // Shop JS (dark/light toggle, drawer, header scroll)
     $js_file = get_stylesheet_directory() . '/assets/js/shop.js';
     if (file_exists($js_file)) {
         wp_enqueue_script(
@@ -103,15 +121,20 @@ add_action('wp_enqueue_scripts', function () {
 
 
 /* ──────────────────────────────────────────────
-   5. GOOGLE FONTS FOR SHOP
+   5. GOOGLE FONTS (all WC pages except checkout)
    ────────────────────────────────────────────── */
 add_action('wp_enqueue_scripts', function () {
-    if (
-        !(function_exists('is_shop') && is_shop()) &&
-        !(function_exists('is_product_taxonomy') && is_product_taxonomy())
-    ) {
+    if (function_exists('is_checkout') && is_checkout())
         return;
-    }
+
+    $is_wc_page = (function_exists('is_shop') && is_shop())
+        || (function_exists('is_product_taxonomy') && is_product_taxonomy())
+        || (function_exists('is_cart') && is_cart())
+        || (function_exists('is_account_page') && is_account_page())
+        || (function_exists('is_woocommerce') && is_woocommerce());
+
+    if (!$is_wc_page)
+        return;
 
     wp_enqueue_style(
         'libros-shop-fonts',
