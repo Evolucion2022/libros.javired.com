@@ -44,6 +44,19 @@ add_action('after_setup_theme', function () {
    2. ENQUEUE ASSETS
    ────────────────────────────────────────────── */
 add_action('wp_enqueue_scripts', function () {
+    // --- DEREGISTER WordPress/WooCommerce default styles on product landing pages ---
+    if (is_product() && libros_has_landing_page()) {
+        // Remove WordPress block styles
+        wp_dequeue_style('wp-block-library');
+        wp_dequeue_style('wp-block-library-theme');
+        wp_dequeue_style('global-styles');
+        wp_dequeue_style('classic-theme-styles');
+
+        // Remove WooCommerce default product styles
+        wp_dequeue_style('wc-blocks-style');
+        wp_dequeue_style('wc-blocks-vendors-style');
+    }
+
     // Google Fonts
     wp_enqueue_style(
         'libros-google-fonts',
@@ -66,7 +79,7 @@ add_action('wp_enqueue_scripts', function () {
         }
     }
 
-    // WooCommerce overrides
+    // WooCommerce overrides (only on non-landing WC pages)
     if (class_exists('WooCommerce')) {
         $wc_css = LIBROS_DIR . '/assets/css/woocommerce.css';
         if (file_exists($wc_css)) {
@@ -90,7 +103,7 @@ add_action('wp_enqueue_scripts', function () {
             true
         );
     }
-});
+}, 999); // High priority to override defaults
 
 
 /* ──────────────────────────────────────────────
@@ -128,9 +141,9 @@ function libros_get_landing_path($slug)
 remove_action('woocommerce_before_main_content', 'woocommerce_output_content_wrapper', 10);
 remove_action('woocommerce_after_main_content', 'woocommerce_output_content_wrapper_end', 10);
 
-// Add our own wrappers
+// Add our own minimal wrappers
 add_action('woocommerce_before_main_content', function () {
-    echo '<main class="site-main">';
+    echo '<main class="site-main" style="max-width:none;padding:0;margin:0;">';
 }, 10);
 
 add_action('woocommerce_after_main_content', function () {
@@ -142,7 +155,25 @@ remove_action('woocommerce_sidebar', 'woocommerce_get_sidebar', 10);
 
 
 /* ──────────────────────────────────────────────
-   5. HELPER FUNCTIONS
+   5. BODY CLASSES FOR CSS TARGETING
+   ────────────────────────────────────────────── */
+add_filter('body_class', function ($classes) {
+    if (is_product()) {
+        global $post;
+        $slug = $post->post_name;
+        $classes[] = 'has-product-landing';
+        $classes[] = 'product-landing-' . $slug;
+
+        if (libros_has_landing_page($slug)) {
+            $classes[] = 'is-landing-page';
+        }
+    }
+    return $classes;
+});
+
+
+/* ──────────────────────────────────────────────
+   6. HELPER FUNCTIONS
    ────────────────────────────────────────────── */
 
 /**
@@ -190,7 +221,7 @@ function libros_get_image_url($attachment_id, $size = 'full')
 
 
 /* ──────────────────────────────────────────────
-   6. DISABLE COMING SOON / MAINTENANCE
+   7. DISABLE COMING SOON / MAINTENANCE
    ────────────────────────────────────────────── */
 add_filter('woocommerce_coming_soon_exclude', '__return_true');
 
@@ -198,5 +229,23 @@ add_filter('woocommerce_coming_soon_exclude', '__return_true');
 add_action('init', function () {
     if (get_option('woocommerce_coming_soon') === 'yes') {
         update_option('woocommerce_coming_soon', 'no');
+    }
+});
+
+
+/* ──────────────────────────────────────────────
+   8. REMOVE WORDPRESS ADMIN BAR ON FRONT-END
+   ────────────────────────────────────────────── */
+add_action('wp_head', function () {
+    if (is_product() && libros_has_landing_page()) {
+        // Inject inline CSS to nuke any remaining WP constraints
+        echo '<style>
+            /* Nuclear WP Reset for Landing Pages */
+            body { margin: 0 !important; padding: 0 !important; }
+            .wp-site-blocks { max-width: none !important; padding: 0 !important; }
+            .is-layout-constrained > * { max-width: none !important; }
+            .has-global-padding { padding: 0 !important; }
+            #wpadminbar + * { margin-top: 0 !important; }
+        </style>';
     }
 });

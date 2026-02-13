@@ -1,8 +1,79 @@
 /* ============================================
-   BASE — Reset, tipografía, elementos globales
+   BASE — Reset, WordPress overrides, tipografía
    ============================================ */
 
-/* === RESET === */
+/* === AGGRESSIVE WORDPRESS RESET === */
+/* WordPress and WooCommerce inject styles that 
+   constrain content in boxes. We nuke all of them. */
+
+/* Reset WordPress core layout containers */
+body.single-product,
+body.woocommerce-page,
+body.has-product-landing {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: var(--cream) !important;
+}
+
+/* WordPress block theme wraps everything */
+body .wp-site-blocks,
+body .is-layout-constrained,
+body .is-layout-flow,
+body .has-global-padding,
+body .wp-block-post-content,
+body .wp-block-group,
+body .entry-content,
+body .site-main,
+body main.site-main {
+    max-width: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+}
+
+/* Remove WordPress default content padding */
+body .wp-site-blocks>*,
+body .is-layout-constrained>*,
+body .has-global-padding>* {
+    max-width: none !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+/* Hide WordPress admin bar spacing */
+body.admin-bar {
+    margin-top: 0 !important;
+}
+
+/* Remove WooCommerce default product page structure */
+.woocommerce div.product,
+.woocommerce-page div.product {
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Kill WooCommerce breadcrumbs on landing pages */
+.woocommerce .woocommerce-breadcrumb {
+    display: none !important;
+}
+
+/* Kill WooCommerce default notices wrapper padding */
+.woocommerce-notices-wrapper {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* Remove WordPress header/footer if theme adds them */
+body.single-product .wp-block-template-part,
+body.single-product .site-header,
+body.single-product .site-footer,
+body.single-product header.wp-block-template-part,
+body.single-product footer.wp-block-template-part {
+    display: none !important;
+}
+
+/* === STANDARD RESET === */
 *,
 *::before,
 *::after {

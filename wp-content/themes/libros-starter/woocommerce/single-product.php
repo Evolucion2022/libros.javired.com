@@ -9,8 +9,6 @@
 
 defined('ABSPATH') || exit;
 
-get_header();
-
 while (have_posts()):
     the_post();
 
@@ -18,10 +16,16 @@ while (have_posts()):
     $slug = get_post_field('post_name', get_the_ID());
 
     if (libros_has_landing_page($slug)) {
-        // Load custom landing page template
+        // === FULL LANDING PAGE MODE ===
+        // Bypass ALL WordPress/WooCommerce wrapping.
+        // The landing page template handles EVERYTHING: 
+        // header, sections, footer.
+        get_header();
         include libros_get_landing_path($slug);
+        get_footer();
     } else {
-        // Fallback: standard WooCommerce product layout
+        // === STANDARD PRODUCT MODE ===
+        get_header();
         ?>
         <main class="site-main">
             <div class="container" style="padding-top: var(--space-10); padding-bottom: var(--space-10);">
@@ -29,8 +33,7 @@ while (have_posts()):
             </div>
         </main>
         <?php
+        get_footer();
     }
 
 endwhile;
-
-get_footer();
