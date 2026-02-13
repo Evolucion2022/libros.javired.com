@@ -28,6 +28,11 @@ wp-config.php
 # === Uploads y media (demasiado pesado para git) ===
 wp-content/uploads/
 
+# === Plugins de terceros (no sobreescribir, se instalan desde WP) ===
+wp-content/plugins/woocommerce/
+wp-content/plugins/loginizer/
+wp-content/plugins/akismet/
+
 # === Archivos temporales de WordPress ===
 wp-content/upgrade/
 wp-content/cache/
@@ -39,6 +44,17 @@ error_log
 wp-content/debug.log
 deploy.log
 .last_sql_hash
+
+# === Archivos pesados / material local ===
+LIBROS/
+database/
+*.pdf
+*.psd
+
+# === Scripts temporales (no versionar) ===
+create-product.php
+fix-woocommerce.php
+wp-debug.php
 
 # === Directorios del servidor ===
 .well-known/
