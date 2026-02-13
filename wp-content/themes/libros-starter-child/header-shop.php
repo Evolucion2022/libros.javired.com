@@ -1,8 +1,8 @@
 <?php
 /**
  * Shop Header — Portalibros
- * Sticky header with glassmorphism, nav, dark/light toggle, cart, mobile hamburger.
- * Included by archive-product.php in the child theme.
+ * Sticky header with glassmorphism, nav, dark/light toggle, cart, user account, mobile hamburger.
+ * Included by archive-product.php and front-page.php in the child theme.
  */
 if (!defined('ABSPATH'))
     exit;
@@ -11,6 +11,11 @@ $cart_count = WC()->cart ? WC()->cart->get_cart_contents_count() : 0;
 $shop_url = wc_get_page_permalink('shop');
 $cart_url = wc_get_cart_url();
 $home_url = home_url('/');
+$account_url = wc_get_page_permalink('myaccount');
+
+// Determine active page
+$is_home = is_front_page();
+$is_shop_page = (function_exists('is_shop') && is_shop()) || (function_exists('is_product_taxonomy') && is_product_taxonomy());
 
 // Get product categories for dropdown
 $categories = get_terms([
@@ -34,8 +39,8 @@ $categories = get_terms([
 
         <!-- Desktop Nav -->
         <nav class="shop-header__nav" aria-label="Navegación principal">
-            <a href="<?php echo esc_url($home_url); ?>">Inicio</a>
-            <a href="<?php echo esc_url($shop_url); ?>" class="is-active">Tienda</a>
+            <a href="<?php echo esc_url($home_url); ?>" <?php echo $is_home ? 'class="is-active"' : ''; ?>>Inicio</a>
+            <a href="<?php echo esc_url($shop_url); ?>" <?php echo $is_shop_page ? 'class="is-active"' : ''; ?>>Tienda</a>
 
             <!-- Categories dropdown -->
             <div class="shop-nav-dropdown">
@@ -90,6 +95,14 @@ $categories = get_terms([
                     </svg>
                 </span>
             </button>
+
+            <!-- Mi Cuenta -->
+            <a href="<?php echo esc_url($account_url); ?>" class="shop-header__account" aria-label="Mi Cuenta">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
+                    <circle cx="12" cy="7" r="4" />
+                </svg>
+            </a>
 
             <!-- Cart -->
             <a href="<?php echo esc_url($cart_url); ?>" class="shop-header__cart" aria-label="Carrito de compras">

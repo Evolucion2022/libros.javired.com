@@ -128,3 +128,62 @@ add_action('wp_enqueue_scripts', function () {
 add_filter('loop_shop_per_page', function () {
     return 100; // Show all 78 products on one page
 });
+
+
+/* ──────────────────────────────────────────────
+   7. HOME PAGE CSS + JS (only on front page)
+   ────────────────────────────────────────────── */
+add_action('wp_enqueue_scripts', function () {
+    if (!is_front_page())
+        return;
+
+    // Home CSS —  also load shop.css for shared header/drawer styles
+    $shop_css = get_stylesheet_directory() . '/assets/css/shop.css';
+    if (file_exists($shop_css)) {
+        wp_enqueue_style(
+            'libros-shop',
+            get_stylesheet_directory_uri() . '/assets/css/shop.css',
+            ['libros-starter-child'],
+            filemtime($shop_css)
+        );
+    }
+
+    $home_css = get_stylesheet_directory() . '/assets/css/home.css';
+    if (file_exists($home_css)) {
+        wp_enqueue_style(
+            'libros-home',
+            get_stylesheet_directory_uri() . '/assets/css/home.css',
+            ['libros-shop'],
+            filemtime($home_css)
+        );
+    }
+
+    // Home JS
+    $home_js = get_stylesheet_directory() . '/assets/js/home.js';
+    if (file_exists($home_js)) {
+        wp_enqueue_script(
+            'libros-home',
+            get_stylesheet_directory_uri() . '/assets/js/home.js',
+            [],
+            filemtime($home_js),
+            true
+        );
+    }
+}, 999);
+
+
+/* ──────────────────────────────────────────────
+   8. GOOGLE FONTS FOR HOME
+   ────────────────────────────────────────────── */
+add_action('wp_enqueue_scripts', function () {
+    if (!is_front_page())
+        return;
+
+    wp_enqueue_style(
+        'libros-home-fonts',
+        'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;600;700;800&family=Poppins:wght@400;500;600;700&display=swap',
+        [],
+        null
+    );
+});
+

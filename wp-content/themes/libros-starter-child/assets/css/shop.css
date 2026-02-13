@@ -380,6 +380,29 @@ body.tax-product_cat .site-footer {
     line-height: 1;
 }
 
+/* Mi Cuenta */
+.shop-header__account {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: var(--shop-radius-sm);
+    color: var(--shop-text);
+    transition: all var(--shop-transition);
+    text-decoration: none;
+}
+
+.shop-header__account:hover {
+    background: var(--shop-accent-light);
+    color: var(--shop-accent);
+}
+
+.shop-header__account svg {
+    width: 20px;
+    height: 20px;
+}
+
 /* Hamburger */
 .shop-header__hamburger {
     display: none;
