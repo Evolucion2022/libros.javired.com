@@ -30,6 +30,8 @@ $LOG_FILE = '/home/yzibhssy/libros.javired.com/deploy.log';
 $DEPLOY_PATHS = [
     'wp-content/themes' => 'wp-content/themes',
     'wp-content/plugins' => 'wp-content/plugins',
+    'wp-content/mu-plugins' => 'wp-content/mu-plugins',
+    'wp-content/product-landing-pages' => 'wp-content/product-landing-pages',
     '.htaccess' => '.htaccess',
 ];
 

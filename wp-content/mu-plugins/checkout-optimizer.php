@@ -18,6 +18,43 @@ if (!defined('ABSPATH'))
 
 
 /* ──────────────────────────────────────────────
+   0. FORCE CLASSIC CHECKOUT (not Block Checkout)
+   WooCommerce Blocks checkout ignores ALL PHP
+   woocommerce_checkout_fields filters. We must
+   convert the page to use the classic shortcode.
+   ────────────────────────────────────────────── */
+add_action('init', function () {
+    // Only run this migration once
+    if (get_option('libros_classic_checkout_migrated'))
+        return;
+
+    // Wait for WooCommerce to be fully loaded
+    if (!function_exists('wc_get_page_id'))
+        return;
+
+    $checkout_page_id = wc_get_page_id('checkout');
+    if ($checkout_page_id <= 0)
+        return;
+
+    $page = get_post($checkout_page_id);
+    if (!$page)
+        return;
+
+    // Check if it uses the block checkout
+    if (strpos($page->post_content, 'wp:woocommerce/checkout') !== false) {
+        wp_update_post([
+            'ID' => $checkout_page_id,
+            'post_content' => '<!-- wp:shortcode -->[woocommerce_checkout]<!-- /wp:shortcode -->',
+        ]);
+        update_option('libros_classic_checkout_migrated', '1');
+    } else {
+        // Already classic or custom — mark as done
+        update_option('libros_classic_checkout_migrated', '1');
+    }
+}, 20);
+
+
+/* ──────────────────────────────────────────────
    1. REMOVE UNNECESSARY BILLING FIELDS
    ────────────────────────────────────────────── */
 add_filter('woocommerce_checkout_fields', function ($fields) {
