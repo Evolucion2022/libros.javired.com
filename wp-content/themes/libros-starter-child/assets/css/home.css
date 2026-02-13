@@ -7,35 +7,40 @@
    0. DESIGN TOKENS (reuse shop tokens via same attribute)
    ───────────────────────────────────────────── */
 :root {
-    --home-bg: #FAFAF8;
+    /* ── Premium Warm Palette ── */
+    --home-bg: #F6F4F0;
     --home-card-bg: #FFFFFF;
-    --home-text: #1A1A2E;
-    --home-text-muted: #64748B;
-    --home-text-faint: #94A3B8;
-    --home-accent: #1a6b4a;
-    --home-accent-hover: #15573c;
-    --home-accent-light: rgba(26, 107, 74, .08);
-    --home-accent-glow: rgba(26, 107, 74, .25);
-    --home-border: rgba(0, 0, 0, .06);
-    --home-border-hover: rgba(0, 0, 0, .12);
-    --home-divider: rgba(0, 0, 0, .05);
-    --home-shadow-sm: 0 1px 3px rgba(0, 0, 0, .06);
-    --home-shadow-md: 0 4px 16px rgba(0, 0, 0, .08);
-    --home-shadow-lg: 0 12px 40px rgba(0, 0, 0, .1);
-    --home-radius: 14px;
+    --home-text: #1B1B1F;
+    --home-text-muted: #52525A;
+    --home-text-faint: #7C7C85;
+    --home-accent: #14532D;
+    --home-accent-hover: #166534;
+    --home-accent-light: rgba(20, 83, 45, .07);
+    --home-accent-glow: rgba(20, 83, 45, .22);
+    --home-border: rgba(0, 0, 0, .10);
+    --home-border-hover: rgba(0, 0, 0, .18);
+    --home-divider: rgba(0, 0, 0, .07);
+    --home-shadow-sm: 0 1px 2px rgba(0, 0, 0, .05), 0 2px 6px rgba(0, 0, 0, .04);
+    --home-shadow-md: 0 2px 4px rgba(0, 0, 0, .04), 0 8px 24px rgba(0, 0, 0, .08);
+    --home-shadow-lg: 0 4px 8px rgba(0, 0, 0, .04), 0 16px 48px rgba(0, 0, 0, .1);
+    --home-shadow-card: 0 1px 2px rgba(0, 0, 0, .06), 0 4px 12px rgba(0, 0, 0, .06), 0 0 0 1px rgba(0, 0, 0, .03);
+    --home-shadow-card-hover: 0 4px 8px rgba(0, 0, 0, .06), 0 12px 36px rgba(0, 0, 0, .1), 0 0 0 1px rgba(20, 83, 45, .12);
+    --home-radius: 16px;
     --home-radius-sm: 10px;
     --home-radius-pill: 999px;
-    --home-transition: .2s ease;
-    --home-hero-bg: linear-gradient(135deg, #0F2027 0%, #203A43 40%, #1a6b4a 100%);
-    --home-section-alt: #F3F4F1;
-    --home-footer-bg: #0B1215;
+    --home-transition: .25s cubic-bezier(.4, 0, .2, 1);
+    --home-hero-bg: linear-gradient(135deg, #0C1B15 0%, #14352A 35%, #1a5c3a 70%, #1B6B45 100%);
+    --home-section-alt: #EEEAE4;
+    --home-section-warm: #F0EDE8;
+    --home-footer-bg: #0D1210;
     --home-glass: rgba(255, 255, 255, .06);
     --home-glass-border: rgba(255, 255, 255, .1);
-    --home-bg-subtle: #F1F1EE;
-    --home-pill-bg: rgba(0, 0, 0, .04);
-    --home-pill-text: #475569;
-    --home-badge-sale: #EF4444;
+    --home-bg-subtle: #ECEAE5;
+    --home-pill-bg: rgba(0, 0, 0, .05);
+    --home-pill-text: #3F3F46;
+    --home-badge-sale: #DC2626;
     --home-badge-text: #FFFFFF;
+    --home-card-border-bottom: rgba(0, 0, 0, .08);
 }
 
 [data-theme="dark"] {
@@ -247,6 +252,7 @@ body.page-template-front-page .shop-header__inner {
     background: var(--home-card-bg);
     border-top: 1px solid var(--home-border);
     border-bottom: 1px solid var(--home-border);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .03);
     transition: background var(--home-transition), border-color var(--home-transition);
 }
 
@@ -306,10 +312,15 @@ body.page-template-front-page .shop-header__inner {
 .home-section {
     padding: 80px 24px;
     transition: background var(--home-transition);
+    background: var(--home-bg);
 }
 
 .home-section--alt {
     background: var(--home-section-alt);
+}
+
+.home-section--warm {
+    background: var(--home-section-warm, var(--home-bg));
 }
 
 .home-section__inner {
@@ -364,6 +375,7 @@ body.page-template-front-page .shop-header__inner {
 .home-cat-card {
     background: var(--home-card-bg);
     border: 1px solid var(--home-border);
+    border-bottom: 3px solid var(--home-card-border-bottom, var(--home-border));
     border-radius: var(--home-radius);
     padding: 28px 24px;
     text-decoration: none;
@@ -373,12 +385,14 @@ body.page-template-front-page .shop-header__inner {
     gap: 16px;
     position: relative;
     overflow: hidden;
+    box-shadow: var(--home-shadow-card);
 }
 
 .home-cat-card:hover {
     border-color: var(--home-accent);
-    transform: translateY(-3px);
-    box-shadow: var(--home-shadow-md);
+    border-bottom-color: var(--home-accent);
+    transform: translateY(-4px);
+    box-shadow: var(--home-shadow-card-hover);
 }
 
 .home-cat-card__icon {
@@ -450,15 +464,18 @@ body.page-template-front-page .shop-header__inner {
     border-radius: var(--home-radius);
     overflow: hidden;
     border: 1px solid var(--home-border);
+    border-bottom: 3px solid var(--home-card-border-bottom, var(--home-border));
     transition: all var(--home-transition);
     display: flex;
     flex-direction: column;
+    box-shadow: var(--home-shadow-card);
 }
 
 .home-product-card:hover {
     border-color: var(--home-border-hover);
-    box-shadow: var(--home-shadow-lg);
-    transform: translateY(-4px);
+    border-bottom-color: var(--home-accent);
+    box-shadow: var(--home-shadow-card-hover);
+    transform: translateY(-5px);
 }
 
 .home-product-card__image {
@@ -662,14 +679,17 @@ body.page-template-front-page .shop-header__inner {
     padding: 36px 24px;
     background: var(--home-card-bg);
     border: 1px solid var(--home-border);
+    border-bottom: 3px solid var(--home-card-border-bottom, var(--home-border));
     border-radius: var(--home-radius);
     transition: all var(--home-transition);
+    box-shadow: var(--home-shadow-card);
 }
 
 .home-value:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--home-shadow-md);
+    transform: translateY(-5px);
+    box-shadow: var(--home-shadow-card-hover);
     border-color: var(--home-accent);
+    border-bottom-color: var(--home-accent);
 }
 
 .home-value__icon {

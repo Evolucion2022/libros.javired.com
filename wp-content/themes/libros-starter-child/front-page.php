@@ -328,7 +328,7 @@ function libros_get_cat_icon($cat_name, $icons)
 </section>
 
 <!-- ═══ VALUE PROPOSITIONS ═══ -->
-<section class="home-section">
+<section class="home-section home-section--warm">
     <div class="home-section__inner">
         <div class="home-section__header home-reveal">
             <span class="home-section__eyebrow">¿Por qué elegirnos?</span>
