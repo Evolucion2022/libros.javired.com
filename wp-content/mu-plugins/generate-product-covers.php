@@ -13,8 +13,8 @@ if (!defined('ABSPATH'))
     exit;
 
 add_action('admin_init', function () {
-    // Only run once
-    if (get_option('libros_covers_generated'))
+    // Only run once (v2 = unified green palette)
+    if (get_option('libros_covers_generated_v2'))
         return;
 
     // Make sure WooCommerce is active
@@ -27,21 +27,21 @@ add_action('admin_init', function () {
         return;
     }
 
-    // Category → color scheme mapping
+    // Unified emerald / forest green palette — subtle tonal variations per category
     $category_colors = [
-        'Espiritualidad y Mindfulness' => ['#6B21A8', '#A855F7', '#E9D5FF'],
-        'Finanzas e Inversiones' => ['#1E3A5F', '#2563EB', '#93C5FD'],
-        'Marketing y Emprendimiento' => ['#9A3412', '#EA580C', '#FED7AA'],
-        'Crianza, Familia y Educación' => ['#166534', '#22C55E', '#BBF7D0'],
-        'Desarrollo Personal' => ['#1E40AF', '#3B82F6', '#BFDBFE'],
-        'Mascotas' => ['#854D0E', '#CA8A04', '#FEF08A'],
-        'Cocina y Recetas' => ['#991B1B', '#DC2626', '#FECACA'],
-        'Aplicaciones Web Lucrativas' => ['#0F766E', '#14B8A6', '#99F6E4'],
-        'Exclusivos' => ['#1C1917', '#78716C', '#F5F5F4'],
-        'Belleza y Cuidado Personal' => ['#831843', '#EC4899', '#FBCFE8'],
-        'Hobbies, Habilidades y Oficios' => ['#3730A3', '#6366F1', '#C7D2FE'],
-        'Relaciones y Sexualidad' => ['#7C2D12', '#F97316', '#FFEDD5'],
-        'Salud y Deportes' => ['#064E3B', '#10B981', '#A7F3D0'],
+        'Espiritualidad y Mindfulness' => ['#0D3B2E', '#1A6B4A', '#D4E8DC'],
+        'Finanzas e Inversiones' => ['#0F3D30', '#1B7050', '#D6EBDF'],
+        'Marketing y Emprendimiento' => ['#123F33', '#1D7553', '#D8EDE1'],
+        'Crianza, Familia y Educación' => ['#0E3A2C', '#186845', '#D2E6D9'],
+        'Desarrollo Personal' => ['#104135', '#1F7A58', '#DAF0E4'],
+        'Mascotas' => ['#113D2F', '#1C6F4D', '#D5EADD'],
+        'Cocina y Recetas' => ['#0D3929', '#176442', '#D0E4D6'],
+        'Aplicaciones Web Lucrativas' => ['#134336', '#21805C', '#DCF2E6'],
+        'Exclusivos' => ['#0B3526', '#14603E', '#CEE2D3'],
+        'Belleza y Cuidado Personal' => ['#0F3C2D', '#196947', '#D3E7DA'],
+        'Hobbies, Habilidades y Oficios' => ['#114034', '#1E7856', '#D9EEE2'],
+        'Relaciones y Sexualidad' => ['#103E31', '#1D7451', '#D7ECDF'],
+        'Salud y Deportes' => ['#0E3B2D', '#1A6C49', '#D4E9DB'],
     ];
 
     // Get all products
@@ -58,9 +58,13 @@ add_action('admin_init', function () {
     $count = 0;
 
     foreach ($products as $product) {
-        // Skip if already has an image
-        if ($product->get_image_id())
-            continue;
+        // Delete existing cover to regenerate with new palette
+        $old_image_id = $product->get_image_id();
+        if ($old_image_id) {
+            wp_delete_attachment($old_image_id, true);
+            $product->set_image_id(0);
+            $product->save();
+        }
 
         $title = $product->get_name();
         $author = $product->get_attribute('Autor');
@@ -68,7 +72,7 @@ add_action('admin_init', function () {
         // Determine category for color scheme
         $cats = get_the_terms($product->get_id(), 'product_cat');
         $cat_name = '';
-        $colors = ['#1A3C40', '#2E6B5A', '#E8F5E9']; // default
+        $colors = ['#0D3B2E', '#1A6B4A', '#D4E8DC']; // default green
 
         if (!empty($cats) && !is_wp_error($cats)) {
             foreach ($cats as $cat) {
@@ -98,8 +102,8 @@ add_action('admin_init', function () {
         }
     }
 
-    update_option('libros_covers_generated', true);
-    error_log("[Libros] Generated covers for $count products.");
+    update_option('libros_covers_generated_v2', true);
+    error_log("[Libros] Generated v2 covers for $count products.");
 });
 
 
