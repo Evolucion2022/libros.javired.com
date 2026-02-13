@@ -1,21 +1,22 @@
 /* ============================================
-   BASE — Reset, WordPress overrides, tipografía
+   BASE — WordPress overrides + Reset + Tipografía
    ============================================ */
 
-/* === AGGRESSIVE WORDPRESS RESET === */
-/* WordPress and WooCommerce inject styles that 
-   constrain content in boxes. We nuke all of them. */
+/* ===================================================
+   WORDPRESS / WOOCOMMERCE NUCLEAR RESET
+   Forces our landing page to render exactly like the
+   standalone HTML reference, overriding ALL WP defaults
+   =================================================== */
 
-/* Reset WordPress core layout containers */
+/* Kill ALL WordPress layout constraints */
+body,
 body.single-product,
 body.woocommerce-page,
-body.has-product-landing {
+body.is-landing-page {
     margin: 0 !important;
     padding: 0 !important;
-    background: var(--cream) !important;
 }
 
-/* WordPress block theme wraps everything */
 body .wp-site-blocks,
 body .is-layout-constrained,
 body .is-layout-flow,
@@ -24,14 +25,19 @@ body .wp-block-post-content,
 body .wp-block-group,
 body .entry-content,
 body .site-main,
-body main.site-main {
+body main.site-main,
+body main,
+body .woocommerce,
+body div.woocommerce,
+body .woocommerce-page div.product,
+body .woocommerce div.product {
     max-width: none !important;
     padding: 0 !important;
     margin: 0 !important;
     width: 100% !important;
+    display: block !important;
 }
 
-/* Remove WordPress default content padding */
 body .wp-site-blocks>*,
 body .is-layout-constrained>*,
 body .has-global-padding>* {
@@ -40,40 +46,28 @@ body .has-global-padding>* {
     padding-right: 0 !important;
 }
 
-/* Hide WordPress admin bar spacing */
+/* Remove WP admin bar margin */
 body.admin-bar {
     margin-top: 0 !important;
 }
 
-/* Remove WooCommerce default product page structure */
-.woocommerce div.product,
-.woocommerce-page div.product {
-    max-width: none !important;
-    margin: 0 !important;
-    padding: 0 !important;
-}
-
-/* Kill WooCommerce breadcrumbs on landing pages */
-.woocommerce .woocommerce-breadcrumb {
+/* Hide default WP header/footer/breadcrumb on landing pages */
+body.is-landing-page .wp-block-template-part,
+body.is-landing-page .site-header,
+body.is-landing-page .site-footer,
+body.is-landing-page header.wp-block-template-part,
+body.is-landing-page footer.wp-block-template-part,
+.woocommerce .woocommerce-breadcrumb,
+.woocommerce-notices-wrapper:empty {
     display: none !important;
 }
 
-/* Kill WooCommerce default notices wrapper padding */
 .woocommerce-notices-wrapper {
     padding: 0 !important;
     margin: 0 !important;
 }
 
-/* Remove WordPress header/footer if theme adds them */
-body.single-product .wp-block-template-part,
-body.single-product .site-header,
-body.single-product .site-footer,
-body.single-product header.wp-block-template-part,
-body.single-product footer.wp-block-template-part {
-    display: none !important;
-}
-
-/* === STANDARD RESET === */
+/* === STANDARD RESET (identical to reference) === */
 *,
 *::before,
 *::after {

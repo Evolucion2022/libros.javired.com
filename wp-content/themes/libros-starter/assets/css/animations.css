@@ -16,6 +16,7 @@
     transform: translateY(0);
 }
 
+/* Variantes de dirección */
 .reveal--left {
     transform: translateX(-30px);
 }
@@ -66,6 +67,8 @@
 }
 
 /* === MICRO ANIMATIONS === */
+
+/* Underline expand on hover */
 .hover-underline {
     position: relative;
 }
@@ -85,7 +88,7 @@
     width: 100%;
 }
 
-/* Breathing glow */
+/* Breathing glow for important elements */
 @keyframes breathe {
 
     0%,
@@ -102,7 +105,7 @@
     animation: breathe 4s ease-in-out infinite;
 }
 
-/* Gentle shake */
+/* Gentle shake for attention */
 @keyframes gentle-shake {
 
     0%,
@@ -116,6 +119,40 @@
 
     75% {
         transform: translateX(3px);
+    }
+}
+
+/* Counter animation for stats */
+@keyframes count-up {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Leaf float decoration */
+@keyframes leaf-float {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0.3;
+    }
+
+    90% {
+        opacity: 0.3;
+    }
+
+    100% {
+        transform: translateY(-100vh) rotate(360deg);
+        opacity: 0;
     }
 }
 

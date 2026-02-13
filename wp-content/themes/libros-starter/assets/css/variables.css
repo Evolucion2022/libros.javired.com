@@ -1,6 +1,6 @@
 /* ============================================
-   DESIGN TOKENS — Libros Starter Theme
-   Palette: Calma, serenidad, esperanza
+   DESIGN TOKENS — Desactiva Tu Ansiedad
+   Paleta: Calma, serenidad, esperanza
    ============================================ */
 
 :root {
@@ -34,15 +34,25 @@
 
     /* Tamaños (Mobile First) */
     --text-xs: 0.75rem;
+    /* 12px */
     --text-sm: 0.875rem;
+    /* 14px */
     --text-base: 1rem;
+    /* 16px */
     --text-md: 1.125rem;
+    /* 18px */
     --text-lg: 1.25rem;
+    /* 20px */
     --text-xl: 1.5rem;
+    /* 24px */
     --text-2xl: 2rem;
+    /* 32px */
     --text-3xl: 2.5rem;
+    /* 40px */
     --text-4xl: 3rem;
+    /* 48px */
     --text-5xl: 3.5rem;
+    /* 56px */
 
     --leading-tight: 1.2;
     --leading-normal: 1.6;
@@ -50,16 +60,27 @@
 
     /* === ESPACIADO (8px grid) === */
     --space-1: 0.25rem;
+    /* 4px */
     --space-2: 0.5rem;
+    /* 8px */
     --space-3: 0.75rem;
+    /* 12px */
     --space-4: 1rem;
+    /* 16px */
     --space-5: 1.5rem;
+    /* 24px */
     --space-6: 2rem;
+    /* 32px */
     --space-8: 3rem;
+    /* 48px */
     --space-10: 4rem;
+    /* 64px */
     --space-12: 5rem;
+    /* 80px */
     --space-16: 6rem;
+    /* 96px */
     --space-20: 8rem;
+    /* 128px */
 
     /* === LAYOUT === */
     --max-width: 1200px;

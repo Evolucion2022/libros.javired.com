@@ -1,17 +1,6 @@
 /* ============================================
-   LAYOUT — Secciones full-width, container, grids
+   LAYOUT — Secciones, container, grid general
    ============================================ */
-
-/* === FULL-WIDTH SECTIONS === */
-/* Every section spans the entire viewport width.
-   The container inside centers the content. */
-.section,
-.hero,
-.footer {
-    width: 100%;
-    display: block;
-    position: relative;
-}
 
 /* === CONTAINER === */
 .container {
@@ -28,6 +17,7 @@
 /* === SECCIONES === */
 .section {
     padding: var(--space-12) 0;
+    position: relative;
 }
 
 .section--cream {
@@ -101,6 +91,7 @@
     pointer-events: none;
 }
 
+/* Partículas sutiles de calma */
 .hero::after {
     content: '';
     position: absolute;
@@ -229,6 +220,12 @@
     font-size: var(--text-sm);
 }
 
+.footer__logo {
+    max-width: 120px;
+    margin: 0 auto var(--space-4);
+    opacity: 0.6;
+}
+
 .footer__links {
     display: flex;
     justify-content: center;
@@ -260,7 +257,7 @@
     margin-bottom: var(--space-2);
 }
 
-/* === DESKTOP BREAKPOINTS === */
+/* === DESKTOP OVERRIDES === */
 @media (min-width: 768px) {
     .section {
         padding: var(--space-16) 0;
@@ -299,26 +296,5 @@
 
     .section {
         padding: var(--space-20) 0;
-    }
-}
-
-/* === BONUS GRID ON DESKTOP (3 columns) === */
-@media (min-width: 768px) {
-    .bonus-card {
-        flex-direction: row;
-        text-align: left;
-    }
-
-    .bonus-card__img {
-        max-width: 140px;
-    }
-}
-
-/* === TESTIMONIALS GRID ON DESKTOP === */
-@media (min-width: 768px) {
-
-    .section--cream #testimonios+div,
-    #testimonios div[style*="grid"] {
-        grid-template-columns: repeat(3, 1fr) !important;
     }
 }
