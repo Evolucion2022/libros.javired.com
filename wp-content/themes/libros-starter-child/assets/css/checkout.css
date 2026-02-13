@@ -219,6 +219,9 @@ body.woocommerce-checkout .is-layout-constrained>* {
 /* ★ PAYMENT spans FULL WIDTH (both columns) */
 .woocommerce-checkout #payment {
     grid-column: 1 / -1 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
     margin-top: 40px !important;
     padding-top: 32px !important;
     border-top: 1px solid #eae8e2 !important;
@@ -447,17 +450,18 @@ body.woocommerce-checkout .is-layout-constrained>* {
     margin: 0 0 20px 0 !important;
     border: none !important;
     list-style: none !important;
-    display: grid !important;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)) !important;
-    gap: 12px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
 }
 
 .woocommerce-checkout #payment ul.payment_methods li {
     background: #ffffff !important;
     border: 1.5px solid #e0ded8 !important;
     border-radius: 12px !important;
-    padding: 16px 20px !important;
-    margin: 0 !important;
+    padding: 16px 24px !important;
+    margin: 0 0 10px 0 !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
     transition: border-color 0.15s ease !important;
     cursor: pointer !important;
 }
@@ -505,8 +509,9 @@ body.woocommerce-checkout .is-layout-constrained>* {
    ────────────────────────────────────────────── */
 .woocommerce-checkout #payment div.place-order {
     padding: 0 !important;
-    max-width: 480px !important;
-    margin: 0 auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
 }
 
 .woocommerce-checkout #place_order {
