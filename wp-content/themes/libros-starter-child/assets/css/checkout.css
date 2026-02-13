@@ -229,7 +229,7 @@ body.woocommerce-checkout .is-layout-constrained>* {
     margin: 0 !important;
 }
 
-/* Right column heading */
+/* Right column heading — sits above order card */
 .woocommerce-checkout h3#order_review_heading {
     grid-column: 2 !important;
     grid-row: 1 !important;
@@ -237,7 +237,7 @@ body.woocommerce-checkout .is-layout-constrained>* {
     font-size: 1rem !important;
     font-weight: 700 !important;
     color: var(--ck-text-primary) !important;
-    margin: 0 0 14px 0 !important;
+    margin: 0 0 12px 0 !important;
     padding: 0 !important;
 }
 
@@ -246,15 +246,16 @@ body.woocommerce-checkout .is-layout-constrained>* {
     display: contents !important;
 }
 
-/* Order table → col 2, elevated card */
+/* Order table → col 2, elevated card with warm tint */
 .woocommerce-checkout table.shop_table {
     grid-column: 2 !important;
-    background: var(--ck-order-bg) !important;
+    background: #faf9f6 !important;
     border-radius: var(--ck-radius-lg) !important;
-    padding: 22px !important;
+    padding: 24px 22px !important;
     border: 1px solid var(--ck-order-border) !important;
     margin: 0 !important;
-    border-collapse: collapse !important;
+    border-collapse: separate !important;
+    border-spacing: 0 !important;
     width: 100% !important;
     box-sizing: border-box !important;
     box-shadow: var(--ck-order-shadow) !important;
@@ -417,46 +418,51 @@ body.woocommerce-checkout .is-layout-constrained>* {
 
 
 /* ══════════════════════════════════════════════
-   9. ORDER TABLE
+   9. ORDER TABLE — Clean card internals
    ══════════════════════════════════════════════ */
-.woocommerce-checkout table.shop_table thead th {
-    font-family: 'Inter', sans-serif !important;
-    font-weight: 600 !important;
-    font-size: 0.75rem !important;
-    color: var(--ck-text-muted) !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.04em !important;
-    padding: 0 0 10px 0 !important;
-    border-bottom: 1px solid var(--ck-divider) !important;
+
+/* Hide the thead — product info is obvious without it */
+.woocommerce-checkout table.shop_table thead {
+    display: none !important;
 }
 
-.woocommerce-checkout table.shop_table td {
-    padding: 10px 0 !important;
+/* Product row */
+.woocommerce-checkout table.shop_table tbody td {
+    padding: 0 0 14px 0 !important;
     border: none !important;
     font-family: 'Inter', sans-serif !important;
-    font-size: 0.85rem !important;
+    font-size: 0.88rem !important;
     color: var(--ck-text-secondary) !important;
+    vertical-align: top !important;
 }
 
 .woocommerce-checkout table.shop_table td.product-name {
-    font-weight: 500 !important;
+    font-weight: 600 !important;
     text-align: left !important;
     color: var(--ck-text-primary) !important;
+    padding-right: 12px !important;
+}
+
+.woocommerce-checkout table.shop_table td.product-name .product-quantity {
+    color: var(--ck-text-muted) !important;
+    font-weight: 500 !important;
 }
 
 .woocommerce-checkout table.shop_table td.product-total {
     text-align: right !important;
     font-weight: 600 !important;
     color: var(--ck-text-primary) !important;
+    white-space: nowrap !important;
 }
 
-/* Subtotal rows */
+/* Subtotal rows — light divider above */
 .woocommerce-checkout table.shop_table tfoot tr:not(.order-total) th,
 .woocommerce-checkout table.shop_table tfoot tr:not(.order-total) td {
-    padding: 6px 0 !important;
+    padding: 10px 0 !important;
     border: none !important;
+    border-top: 1px solid var(--ck-divider) !important;
     font-family: 'Inter', sans-serif !important;
-    font-size: 0.8rem !important;
+    font-size: 0.82rem !important;
     color: var(--ck-text-muted) !important;
     font-weight: 500 !important;
 }
@@ -469,14 +475,14 @@ body.woocommerce-checkout .is-layout-constrained>* {
     text-align: right !important;
 }
 
-/* Total — emphasized */
+/* Total — prominent, with heavier divider */
 .woocommerce-checkout table.shop_table .order-total th,
 .woocommerce-checkout table.shop_table .order-total td {
-    border-top: 1px solid var(--ck-divider) !important;
-    padding: 14px 0 2px !important;
+    border-top: 2px solid var(--ck-border) !important;
+    padding: 16px 0 4px !important;
     font-family: 'Poppins', sans-serif !important;
     font-weight: 700 !important;
-    font-size: 0.95rem !important;
+    font-size: 1rem !important;
     color: var(--ck-text-primary) !important;
 }
 
@@ -490,7 +496,7 @@ body.woocommerce-checkout .is-layout-constrained>* {
 
 .woocommerce-checkout table.shop_table .order-total .woocommerce-Price-amount {
     color: var(--ck-accent) !important;
-    font-size: 1.3rem !important;
+    font-size: 1.35rem !important;
     font-weight: 800 !important;
 }
 
