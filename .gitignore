@@ -1,0 +1,62 @@
+# =============================================
+# WordPress .gitignore — Solo custom (no core)
+# =============================================
+
+# === WordPress Core (no versionar) ===
+/wp-admin/
+/wp-includes/
+/wp-activate.php
+/wp-blog-header.php
+/wp-comments-post.php
+/wp-config-sample.php
+/wp-cron.php
+/wp-links-opml.php
+/wp-load.php
+/wp-login.php
+/wp-mail.php
+/wp-settings.php
+/wp-signup.php
+/wp-trackback.php
+/xmlrpc.php
+/index.php
+/license.txt
+/readme.html
+
+# === Configuración sensible ===
+wp-config.php
+
+# === Uploads y media (demasiado pesado para git) ===
+wp-content/uploads/
+
+# === Archivos temporales de WordPress ===
+wp-content/upgrade/
+wp-content/cache/
+wp-content/backups/
+
+# === Logs ===
+error_log
+*.log
+wp-content/debug.log
+
+# === Directorios del servidor ===
+.well-known/
+cgi-bin/
+
+# === Sistema operativo ===
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# === Editores/IDE ===
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# === Node (por si se usa en theme dev) ===
+node_modules/
+package-lock.json
+
+# === Deploy state (generado por FTP action) ===
+.ftp-deploy-sync-state.json

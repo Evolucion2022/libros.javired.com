@@ -1,0 +1,78 @@
+name: Deploy to BanaHosting
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Deploy WordPress Changes
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # --------------------------------------------------
+      # 1. Generate wp-config.php from deploy template
+      # --------------------------------------------------
+      - name: Generate wp-config.php
+        run: |
+          cp wp-config-deploy.php wp-config.php
+          sed -i "s|{{DB_NAME}}|${{ secrets.DB_NAME }}|g" wp-config.php
+          sed -i "s|{{DB_USER}}|${{ secrets.DB_USER }}|g" wp-config.php
+          sed -i "s|{{DB_PASSWORD}}|${{ secrets.DB_PASSWORD }}|g" wp-config.php
+          sed -i "s|{{DB_HOST}}|${{ secrets.DB_HOST }}|g" wp-config.php
+
+      # --------------------------------------------------
+      # 2. Deploy files via FTP (only changed files, no delete)
+      # --------------------------------------------------
+      - name: Deploy via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: /
+          protocol: ftps
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/.github/**
+            **/node_modules/**
+            **/database/**
+            wp-config-deploy.php
+            README.md
+            *.sql
+
+      # --------------------------------------------------
+      # 3. Import database if SQL changed (via SSH)
+      # --------------------------------------------------
+      - name: Check for DB changes
+        id: db_check
+        run: |
+          if git diff --name-only HEAD~1 HEAD 2>/dev/null | grep -q '\.sql$\|database/'; then
+            echo "db_changed=true" >> $GITHUB_OUTPUT
+          else
+            echo "db_changed=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Import database via SSH
+        if: steps.db_check.outputs.db_changed == 'true'
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          password: ${{ secrets.SSH_PASSWORD }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            echo "=== Database migration detected ==="
+            DB_FILE=$(find ${{ secrets.REMOTE_PATH }}/database/ -name "*.sql" -type f | sort -r | head -1)
+            if [ -n "$DB_FILE" ]; then
+              echo "Importing: $DB_FILE"
+              mysql -u ${{ secrets.DB_USER }} -p'${{ secrets.DB_PASSWORD }}' ${{ secrets.DB_NAME }} < "$DB_FILE"
+              echo "=== Database import complete ==="
+            else
+              echo "No SQL file found in database/ directory"
+            fi
