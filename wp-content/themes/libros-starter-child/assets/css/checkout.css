@@ -1,141 +1,129 @@
 /* ============================================================
-   LIBROS CHECKOUT — Premium Dark/Light Mode
+   LIBROS CHECKOUT — Premium Warm Light-First Design
    ============================================================
-   Dark Mode: Deep charcoal + gold/amber accents
-   Light Mode: Clean warm white + emerald accents
-   Auto-switches via prefers-color-scheme
+   Philosophy: Warm, trustworthy, clean — like buying at a
+   premium bookstore. Light mode default, subtle dark alternative.
+   Single accent: Emerald (#1a6b4a) — trust, growth, nature.
    ============================================================ */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap');
 
 
 /* ══════════════════════════════════════════════
-   DESIGN TOKENS — Dark Mode (default)
+   DESIGN TOKENS — Light Mode (default)
    ══════════════════════════════════════════════ */
 :root {
     /* Page */
-    --ck-bg: #0c0c0f;
-    --ck-surface: #16161a;
-    --ck-surface-raised: #1e1e24;
-    --ck-border: #2a2a32;
-    --ck-border-hover: #3d3d48;
+    --ck-bg: #f7f5f1;
+    --ck-surface: #ffffff;
+    --ck-surface-raised: #faf9f7;
+    --ck-border: #e6e3dc;
+    --ck-border-hover: #d0cdc5;
+    --ck-divider: #ece9e3;
 
-    /* Accent — Gold */
-    --ck-accent: #c9a96e;
-    --ck-accent-bright: #e2c88a;
-    --ck-accent-muted: rgba(201, 169, 110, 0.12);
-    --ck-accent-glow: rgba(201, 169, 110, 0.2);
-
-    /* Success */
-    --ck-success: #5dd99a;
-    --ck-success-muted: rgba(93, 217, 154, 0.1);
+    /* Accent — Emerald */
+    --ck-accent: #1a6b4a;
+    --ck-accent-hover: #1e7f58;
+    --ck-accent-soft: rgba(26, 107, 74, 0.07);
+    --ck-accent-ring: rgba(26, 107, 74, 0.15);
 
     /* Text */
-    --ck-text: #f0ede8;
-    --ck-text-secondary: #a09d96;
-    --ck-text-muted: #6b6860;
-    --ck-text-inverse: #0c0c0f;
+    --ck-text-primary: #1c1c1e;
+    --ck-text-secondary: #5a5750;
+    --ck-text-muted: #9a968e;
+    --ck-text-on-accent: #ffffff;
 
     /* Inputs */
-    --ck-input-bg: #1a1a20;
-    --ck-input-border: #2e2e38;
+    --ck-input-bg: #ffffff;
+    --ck-input-border: #dad7d0;
     --ck-input-focus-border: var(--ck-accent);
-    --ck-input-focus-ring: var(--ck-accent-glow);
-    --ck-input-placeholder: #55535a;
+    --ck-input-focus-ring: var(--ck-accent-ring);
+    --ck-input-placeholder: #bcb8b0;
 
-    /* CTA */
-    --ck-cta-bg: linear-gradient(135deg, #c9a96e 0%, #b8944d 100%);
-    --ck-cta-hover: linear-gradient(135deg, #dbb97e 0%, #c9a96e 100%);
-    --ck-cta-text: #0c0c0f;
-    --ck-cta-shadow: rgba(201, 169, 110, 0.25);
+    /* CTA Button */
+    --ck-cta-bg: #1a6b4a;
+    --ck-cta-hover: #1e7f58;
+    --ck-cta-text: #ffffff;
+    --ck-cta-shadow: rgba(26, 107, 74, 0.22);
 
     /* Banner */
-    --ck-banner-bg: linear-gradient(135deg, #1a1520 0%, #231c2e 50%, #1a1520 100%);
-    --ck-banner-border: rgba(201, 169, 110, 0.15);
+    --ck-banner-bg: linear-gradient(135deg, #1a3d3a 0%, #244f48 100%);
 
-    /* Cards */
-    --ck-card-bg: var(--ck-surface);
-    --ck-card-border: var(--ck-border);
+    /* Order card */
+    --ck-order-bg: #ffffff;
+    --ck-order-border: #e6e3dc;
+    --ck-order-shadow: 0 2px 12px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(0, 0, 0, 0.03);
 
     /* Badges */
-    --ck-badge-bg: var(--ck-accent-muted);
-    --ck-badge-text: var(--ck-accent);
-    --ck-badge-border: rgba(201, 169, 110, 0.18);
+    --ck-badge-bg: rgba(26, 107, 74, 0.06);
+    --ck-badge-text: #1a6b4a;
+    --ck-badge-border: rgba(26, 107, 74, 0.12);
 
     /* Error */
-    --ck-error-bg: rgba(220, 74, 56, 0.08);
-    --ck-error-border: rgba(220, 74, 56, 0.2);
-    --ck-error-text: #f87171;
+    --ck-error-bg: #fef2f0;
+    --ck-error-border: #f0d0c8;
+    --ck-error-text: #b91c1c;
 
     /* Misc */
-    --ck-radius-sm: 8px;
-    --ck-radius-md: 12px;
-    --ck-radius-lg: 16px;
-    --ck-shadow-subtle: 0 1px 3px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.02);
-    --ck-shadow-elevated: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.03);
-    --ck-transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --ck-radius: 10px;
+    --ck-radius-lg: 14px;
+    --ck-transition: 0.2s ease;
 }
 
 
 /* ══════════════════════════════════════════════
-   DESIGN TOKENS — Light Mode
+   DESIGN TOKENS — Dark Mode
    ══════════════════════════════════════════════ */
-@media (prefers-color-scheme: light) {
+@media (prefers-color-scheme: dark) {
     :root {
-        --ck-bg: #f5f3ef;
-        --ck-surface: #ffffff;
-        --ck-surface-raised: #faf9f6;
-        --ck-border: #e4e2dc;
-        --ck-border-hover: #ccc9c2;
+        --ck-bg: #1a1a1e;
+        --ck-surface: #242428;
+        --ck-surface-raised: #2a2a2f;
+        --ck-border: #35353b;
+        --ck-border-hover: #48484f;
+        --ck-divider: #30303a;
 
-        /* Accent — Deep Emerald */
-        --ck-accent: #1a6b4a;
-        --ck-accent-bright: #22875c;
-        --ck-accent-muted: rgba(26, 107, 74, 0.08);
-        --ck-accent-glow: rgba(26, 107, 74, 0.12);
+        --ck-accent: #3da876;
+        --ck-accent-hover: #4cbf88;
+        --ck-accent-soft: rgba(61, 168, 118, 0.1);
+        --ck-accent-ring: rgba(61, 168, 118, 0.2);
 
-        --ck-success: #1a6b4a;
-        --ck-success-muted: rgba(26, 107, 74, 0.06);
+        --ck-text-primary: #ededeb;
+        --ck-text-secondary: #a5a39e;
+        --ck-text-muted: #6e6c67;
+        --ck-text-on-accent: #ffffff;
 
-        --ck-text: #1a1a1e;
-        --ck-text-secondary: #5c5a55;
-        --ck-text-muted: #9b9890;
-        --ck-text-inverse: #ffffff;
-
-        --ck-input-bg: #ffffff;
-        --ck-input-border: #d8d6d0;
+        --ck-input-bg: #2a2a2f;
+        --ck-input-border: #3e3e45;
         --ck-input-focus-border: var(--ck-accent);
-        --ck-input-focus-ring: var(--ck-accent-glow);
-        --ck-input-placeholder: #b8b5ae;
+        --ck-input-focus-ring: var(--ck-accent-ring);
+        --ck-input-placeholder: #55555c;
 
-        --ck-cta-bg: linear-gradient(135deg, #1a6b4a 0%, #15573c 100%);
-        --ck-cta-hover: linear-gradient(135deg, #22875c 0%, #1a6b4a 100%);
+        --ck-cta-bg: #3da876;
+        --ck-cta-hover: #4cbf88;
         --ck-cta-text: #ffffff;
-        --ck-cta-shadow: rgba(26, 107, 74, 0.2);
+        --ck-cta-shadow: rgba(61, 168, 118, 0.2);
 
-        --ck-banner-bg: linear-gradient(135deg, #1a3c40 0%, #1e4a45 50%, #2a524f 100%);
-        --ck-banner-border: rgba(255, 255, 255, 0.08);
+        --ck-banner-bg: linear-gradient(135deg, #1a2e2a 0%, #1f3b35 100%);
 
-        --ck-card-bg: #ffffff;
-        --ck-card-border: #e8e6e0;
+        --ck-order-bg: #242428;
+        --ck-order-border: #35353b;
+        --ck-order-shadow: 0 2px 12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.03);
 
-        --ck-badge-bg: var(--ck-accent-muted);
-        --ck-badge-text: var(--ck-accent);
-        --ck-badge-border: rgba(26, 107, 74, 0.12);
+        --ck-badge-bg: rgba(61, 168, 118, 0.1);
+        --ck-badge-text: #3da876;
+        --ck-badge-border: rgba(61, 168, 118, 0.15);
 
-        --ck-error-bg: #fef2f0;
-        --ck-error-border: #f5d4ce;
-        --ck-error-text: #b91c1c;
-
-        --ck-shadow-subtle: 0 1px 3px rgba(0, 0, 0, 0.06), 0 0 0 1px rgba(0, 0, 0, 0.03);
-        --ck-shadow-elevated: 0 8px 32px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.04);
+        --ck-error-bg: rgba(185, 28, 28, 0.1);
+        --ck-error-border: rgba(185, 28, 28, 0.2);
+        --ck-error-text: #f87171;
     }
 }
 
 
-/* ──────────────────────────────────────────────
-   1. PAGE-LEVEL RESETS
-   ────────────────────────────────────────────── */
+/* ══════════════════════════════════════════════
+   1. PAGE RESET
+   ══════════════════════════════════════════════ */
 body.woocommerce-checkout h1,
 body.woocommerce-checkout .entry-title,
 body.woocommerce-checkout .page-title,
@@ -146,9 +134,8 @@ body.woocommerce-checkout .entry-header {
 
 body.woocommerce-checkout {
     background: var(--ck-bg) !important;
-    color: var(--ck-text) !important;
+    color: var(--ck-text-primary) !important;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
 }
 
 body.woocommerce-checkout .site-main,
@@ -162,62 +149,41 @@ body.woocommerce-checkout .is-layout-constrained>* {
 }
 
 
-/* ──────────────────────────────────────────────
-   2. WRAPPER
-   ────────────────────────────────────────────── */
+/* ══════════════════════════════════════════════
+   2. CONTAINER
+   ══════════════════════════════════════════════ */
 .woocommerce-checkout>.woocommerce {
-    max-width: 1100px !important;
+    max-width: 1060px !important;
     margin: 0 auto !important;
-    padding: 48px 40px 80px !important;
+    padding: 44px 36px 72px !important;
     box-sizing: border-box;
 }
 
 
-/* ──────────────────────────────────────────────
+/* ══════════════════════════════════════════════
    3. PRODUCT BANNER
-   ────────────────────────────────────────────── */
+   ══════════════════════════════════════════════ */
 .checkout-summary-banner {
-    display: flex;
-    align-items: center;
-    gap: 20px;
     background: var(--ck-banner-bg);
-    border: 1px solid var(--ck-banner-border);
     border-radius: var(--ck-radius-lg);
-    padding: 22px 28px;
-    margin-bottom: 40px;
+    padding: 20px 26px;
+    margin-bottom: 36px;
     color: #fff;
-    box-shadow: var(--ck-shadow-elevated);
-    position: relative;
-    overflow: hidden;
-}
-
-/* Subtle shimmer glow effect on banner */
-.checkout-summary-banner::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    right: -20%;
-    width: 200px;
-    height: 200px;
-    background: radial-gradient(circle, rgba(201, 169, 110, 0.08) 0%, transparent 70%);
-    pointer-events: none;
 }
 
 .checkout-summary-banner__inner {
     display: flex;
     align-items: center;
-    gap: 18px;
+    gap: 16px;
     width: 100%;
-    position: relative;
-    z-index: 1;
 }
 
 .checkout-summary-banner__image img,
 .checkout-summary-banner__image .checkout-product-thumb {
-    width: 56px !important;
+    width: 52px !important;
     height: auto !important;
-    border-radius: var(--ck-radius-sm);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
     flex-shrink: 0;
 }
 
@@ -227,41 +193,41 @@ body.woocommerce-checkout .is-layout-constrained>* {
 
 .checkout-summary-banner__title {
     font-family: 'Poppins', sans-serif !important;
-    font-size: 1rem !important;
+    font-size: 0.95rem !important;
     font-weight: 700 !important;
     color: #ffffff !important;
     margin: 0 0 2px 0 !important;
-    line-height: 1.3 !important;
+    line-height: 1.35 !important;
 }
 
 .checkout-summary-banner__price {
     font-family: 'Poppins', sans-serif !important;
-    font-size: 1.3rem !important;
+    font-size: 1.25rem !important;
     font-weight: 800 !important;
-    color: var(--ck-accent-bright) !important;
+    color: #6ee7a8 !important;
     margin: 0 !important;
 }
 
 .checkout-summary-banner__meta {
     font-family: 'Inter', sans-serif !important;
     font-size: 0.68rem !important;
-    color: rgba(255, 255, 255, 0.4) !important;
+    color: rgba(255, 255, 255, 0.5) !important;
     margin: 4px 0 0 0 !important;
 }
 
 
-/* ──────────────────────────────────────────────
+/* ══════════════════════════════════════════════
    4. COUPON
-   ────────────────────────────────────────────── */
+   ══════════════════════════════════════════════ */
 .woocommerce-form-coupon-toggle {
-    margin-bottom: 32px;
+    margin-bottom: 28px;
 }
 
 .woocommerce-form-coupon-toggle .woocommerce-info {
     background: var(--ck-surface) !important;
     border: 1px dashed var(--ck-border) !important;
-    border-radius: var(--ck-radius-md) !important;
-    padding: 11px 18px !important;
+    border-radius: var(--ck-radius) !important;
+    padding: 10px 16px !important;
     font-family: 'Inter', sans-serif !important;
     font-size: 0.8rem !important;
     color: var(--ck-text-secondary) !important;
@@ -276,24 +242,25 @@ body.woocommerce-checkout .is-layout-constrained>* {
     color: var(--ck-accent) !important;
     font-weight: 600 !important;
     text-decoration: none !important;
-    transition: color var(--ck-transition);
 }
 
 .woocommerce-form-coupon-toggle .woocommerce-info a:hover {
-    color: var(--ck-accent-bright) !important;
+    color: var(--ck-accent-hover) !important;
+    text-decoration: underline !important;
 }
 
 
 /* ══════════════════════════════════════════════
-   5. GRID — 2 columns + full-width payment
+   5. TWO-COLUMN GRID
    ══════════════════════════════════════════════ */
 .woocommerce-checkout form.checkout {
     display: grid !important;
-    grid-template-columns: 1fr 380px !important;
-    gap: 0 48px !important;
+    grid-template-columns: 1fr 360px !important;
+    gap: 0 44px !important;
     align-items: start !important;
 }
 
+/* Left column */
 .woocommerce-checkout #customer_details {
     grid-column: 1 !important;
     grid-row: 1 / 10 !important;
@@ -309,56 +276,56 @@ body.woocommerce-checkout .is-layout-constrained>* {
     margin: 0 !important;
 }
 
+/* Right column heading */
 .woocommerce-checkout h3#order_review_heading {
     grid-column: 2 !important;
     grid-row: 1 !important;
     font-family: 'Poppins', sans-serif !important;
-    font-size: 1.05rem !important;
+    font-size: 1rem !important;
     font-weight: 700 !important;
-    color: var(--ck-text) !important;
-    margin: 0 0 16px 0 !important;
+    color: var(--ck-text-primary) !important;
+    margin: 0 0 14px 0 !important;
     padding: 0 !important;
-    letter-spacing: -0.01em;
 }
 
-/* display:contents makes #order_review children into grid items */
+/* Explode #order_review so children join the grid */
 .woocommerce-checkout #order_review {
     display: contents !important;
 }
 
-/* Order table — card in col 2 */
+/* Order table → col 2, elevated card */
 .woocommerce-checkout table.shop_table {
     grid-column: 2 !important;
-    background: var(--ck-card-bg) !important;
+    background: var(--ck-order-bg) !important;
     border-radius: var(--ck-radius-lg) !important;
-    padding: 24px !important;
-    border: 1px solid var(--ck-card-border) !important;
+    padding: 22px !important;
+    border: 1px solid var(--ck-order-border) !important;
     margin: 0 !important;
     border-collapse: collapse !important;
     width: 100% !important;
     box-sizing: border-box !important;
-    box-shadow: var(--ck-shadow-subtle) !important;
+    box-shadow: var(--ck-order-shadow) !important;
 }
 
-/* Trust badges in col 2 */
+/* Trust badges → col 2 */
 .woocommerce-checkout .checkout-trust-badges {
     grid-column: 2 !important;
     display: flex;
-    gap: 8px;
+    gap: 6px;
     flex-wrap: wrap;
-    margin: 16px 0 0 0;
+    margin: 14px 0 0 0;
     padding: 0;
 }
 
-/* Payment → FULL WIDTH */
+/* Payment → full width below */
 .woocommerce-checkout #payment {
     grid-column: 1 / -1 !important;
     width: 100% !important;
     max-width: 100% !important;
     box-sizing: border-box !important;
-    margin-top: 48px !important;
-    padding-top: 36px !important;
-    border-top: 1px solid var(--ck-border) !important;
+    margin-top: 44px !important;
+    padding-top: 32px !important;
+    border-top: 1px solid var(--ck-divider) !important;
     background: transparent !important;
     border-left: none !important;
     border-right: none !important;
@@ -367,9 +334,9 @@ body.woocommerce-checkout .is-layout-constrained>* {
 }
 
 
-/* ──────────────────────────────────────────────
+/* ══════════════════════════════════════════════
    6. BILLING SECTION
-   ────────────────────────────────────────────── */
+   ══════════════════════════════════════════════ */
 .woocommerce-billing-fields {
     padding: 0 !important;
     background: transparent !important;
@@ -382,25 +349,24 @@ body.woocommerce-checkout .is-layout-constrained>* {
     width: 100% !important;
     display: flex !important;
     flex-wrap: wrap !important;
-    gap: 20px !important;
+    gap: 18px !important;
 }
 
 .woocommerce-checkout h3#billing_heading,
 .woocommerce-checkout .woocommerce-billing-fields h3 {
     font-family: 'Poppins', sans-serif !important;
-    font-size: 1.2rem !important;
+    font-size: 1.15rem !important;
     font-weight: 700 !important;
-    color: var(--ck-text) !important;
-    margin: 0 0 28px 0 !important;
+    color: var(--ck-text-primary) !important;
+    margin: 0 0 24px 0 !important;
     padding: 0 !important;
     border: none !important;
-    letter-spacing: -0.01em;
 }
 
 
-/* ──────────────────────────────────────────────
-   7. FORM FIELDS — Premium inputs
-   ────────────────────────────────────────────── */
+/* ══════════════════════════════════════════════
+   7. FORM FIELDS — White inputs that pop
+   ══════════════════════════════════════════════ */
 .woocommerce-checkout .form-row {
     margin: 0 !important;
     padding: 0 !important;
@@ -420,32 +386,34 @@ body.woocommerce-checkout .is-layout-constrained>* {
     width: 100% !important;
 }
 
+/* Labels — clear, readable, not uppercase */
 .woocommerce-checkout .form-row label {
     font-family: 'Inter', sans-serif !important;
     font-weight: 600 !important;
-    font-size: 0.78rem !important;
+    font-size: 0.82rem !important;
     color: var(--ck-text-secondary) !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.04em !important;
-    margin-bottom: 8px !important;
+    margin-bottom: 7px !important;
     display: block !important;
+    text-transform: none !important;
+    letter-spacing: normal !important;
 }
 
 .woocommerce-checkout .form-row label .required {
-    color: var(--ck-error-text) !important;
+    color: #dc4a38 !important;
     margin-left: 2px;
 }
 
+/* Inputs — white, crisp, and pop against warm bg */
 .woocommerce-checkout .form-row input.input-text,
 .woocommerce-checkout .form-row textarea,
 .woocommerce-checkout .form-row select {
     width: 100% !important;
-    padding: 14px 16px !important;
+    padding: 13px 15px !important;
     border: 1.5px solid var(--ck-input-border) !important;
-    border-radius: var(--ck-radius-md) !important;
+    border-radius: var(--ck-radius) !important;
     font-family: 'Inter', sans-serif !important;
-    font-size: 0.95rem !important;
-    color: var(--ck-text) !important;
+    font-size: 0.92rem !important;
+    color: var(--ck-text-primary) !important;
     background: var(--ck-input-bg) !important;
     transition: border-color var(--ck-transition), box-shadow var(--ck-transition) !important;
     box-sizing: border-box !important;
@@ -453,7 +421,8 @@ body.woocommerce-checkout .is-layout-constrained>* {
     appearance: none !important;
 }
 
-.woocommerce-checkout .form-row input.input-text:hover {
+.woocommerce-checkout .form-row input.input-text:hover,
+.woocommerce-checkout .form-row select:hover {
     border-color: var(--ck-border-hover) !important;
 }
 
@@ -466,21 +435,20 @@ body.woocommerce-checkout .is-layout-constrained>* {
 
 .woocommerce-checkout .form-row input.input-text::placeholder {
     color: var(--ck-input-placeholder) !important;
-    font-weight: 400 !important;
 }
 
-/* Select dropdown arrow */
+/* Select arrow */
 .woocommerce-checkout .form-row select {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23a09d96' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E") !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%235a5750' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E") !important;
     background-repeat: no-repeat !important;
     background-position: right 14px center !important;
-    padding-right: 38px !important;
+    padding-right: 36px !important;
 }
 
 
-/* ──────────────────────────────────────────────
+/* ══════════════════════════════════════════════
    8. HIDE UNNECESSARY
-   ────────────────────────────────────────────── */
+   ══════════════════════════════════════════════ */
 .woocommerce-checkout .form-row.hidden,
 .woocommerce-checkout #billing_country_field,
 .woocommerce-checkout .woocommerce-additional-fields,
@@ -492,43 +460,50 @@ body.woocommerce-checkout .is-layout-constrained>* {
     margin: 0 !important;
     padding: 0 !important;
     overflow: hidden !important;
-    flex: 0 0 0 !important;
 }
 
 
-/* ──────────────────────────────────────────────
+/* ══════════════════════════════════════════════
    9. ORDER TABLE
-   ────────────────────────────────────────────── */
-.woocommerce-checkout table.shop_table thead {
-    display: none !important;
+   ══════════════════════════════════════════════ */
+.woocommerce-checkout table.shop_table thead th {
+    font-family: 'Inter', sans-serif !important;
+    font-weight: 600 !important;
+    font-size: 0.75rem !important;
+    color: var(--ck-text-muted) !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.04em !important;
+    padding: 0 0 10px 0 !important;
+    border-bottom: 1px solid var(--ck-divider) !important;
 }
 
 .woocommerce-checkout table.shop_table td {
     padding: 10px 0 !important;
     border: none !important;
     font-family: 'Inter', sans-serif !important;
-    font-size: 0.88rem !important;
+    font-size: 0.85rem !important;
     color: var(--ck-text-secondary) !important;
 }
 
 .woocommerce-checkout table.shop_table td.product-name {
     font-weight: 500 !important;
     text-align: left !important;
-    color: var(--ck-text) !important;
+    color: var(--ck-text-primary) !important;
 }
 
 .woocommerce-checkout table.shop_table td.product-total {
     text-align: right !important;
     font-weight: 600 !important;
-    color: var(--ck-text) !important;
+    color: var(--ck-text-primary) !important;
 }
 
+/* Subtotal rows */
 .woocommerce-checkout table.shop_table tfoot tr:not(.order-total) th,
 .woocommerce-checkout table.shop_table tfoot tr:not(.order-total) td {
-    padding: 8px 0 !important;
+    padding: 6px 0 !important;
     border: none !important;
     font-family: 'Inter', sans-serif !important;
-    font-size: 0.82rem !important;
+    font-size: 0.8rem !important;
     color: var(--ck-text-muted) !important;
     font-weight: 500 !important;
 }
@@ -541,15 +516,15 @@ body.woocommerce-checkout .is-layout-constrained>* {
     text-align: right !important;
 }
 
-/* Total row — gold highlighted */
+/* Total — emphasized */
 .woocommerce-checkout table.shop_table .order-total th,
 .woocommerce-checkout table.shop_table .order-total td {
-    border-top: 1px solid var(--ck-border) !important;
-    padding: 16px 0 4px !important;
+    border-top: 1px solid var(--ck-divider) !important;
+    padding: 14px 0 2px !important;
     font-family: 'Poppins', sans-serif !important;
     font-weight: 700 !important;
-    font-size: 1rem !important;
-    color: var(--ck-text) !important;
+    font-size: 0.95rem !important;
+    color: var(--ck-text-primary) !important;
 }
 
 .woocommerce-checkout table.shop_table .order-total th {
@@ -562,57 +537,55 @@ body.woocommerce-checkout .is-layout-constrained>* {
 
 .woocommerce-checkout table.shop_table .order-total .woocommerce-Price-amount {
     color: var(--ck-accent) !important;
-    font-size: 1.4rem !important;
+    font-size: 1.3rem !important;
     font-weight: 800 !important;
 }
 
 
-/* ──────────────────────────────────────────────
+/* ══════════════════════════════════════════════
    10. TRUST BADGES
-   ────────────────────────────────────────────── */
+   ══════════════════════════════════════════════ */
 .trust-badge {
     display: inline-flex;
     align-items: center;
     gap: 4px;
     font-family: 'Inter', sans-serif;
-    font-size: 0.66rem;
+    font-size: 0.65rem;
     font-weight: 600;
     color: var(--ck-badge-text);
     background: var(--ck-badge-bg);
-    padding: 5px 11px;
+    padding: 5px 10px;
     border-radius: 20px;
     border: 1px solid var(--ck-badge-border);
     white-space: nowrap;
-    letter-spacing: 0.01em;
 }
 
 .trust-badge span {
-    font-size: 0.78rem;
+    font-size: 0.76rem;
     line-height: 1;
 }
 
 
-/* ──────────────────────────────────────────────
-   11. PAYMENT — Full width section
-   ────────────────────────────────────────────── */
+/* ══════════════════════════════════════════════
+   11. PAYMENT METHODS — Full width
+   ══════════════════════════════════════════════ */
 .woocommerce-checkout #payment ul.payment_methods {
     padding: 0 !important;
-    margin: 0 0 24px 0 !important;
+    margin: 0 0 20px 0 !important;
     border: none !important;
     list-style: none !important;
     width: 100% !important;
-    box-sizing: border-box !important;
 }
 
 .woocommerce-checkout #payment ul.payment_methods li {
     background: var(--ck-surface) !important;
     border: 1.5px solid var(--ck-border) !important;
-    border-radius: var(--ck-radius-md) !important;
-    padding: 18px 24px !important;
+    border-radius: var(--ck-radius) !important;
+    padding: 15px 20px !important;
     margin: 0 0 10px 0 !important;
     width: 100% !important;
     box-sizing: border-box !important;
-    transition: border-color var(--ck-transition), box-shadow var(--ck-transition) !important;
+    transition: border-color var(--ck-transition) !important;
     cursor: pointer !important;
 }
 
@@ -622,30 +595,30 @@ body.woocommerce-checkout .is-layout-constrained>* {
 
 .woocommerce-checkout #payment ul.payment_methods li:hover {
     border-color: var(--ck-accent) !important;
-    box-shadow: 0 0 0 1px var(--ck-accent-muted) !important;
 }
 
 .woocommerce-checkout #payment ul.payment_methods li label {
     font-family: 'Inter', sans-serif !important;
     font-weight: 600 !important;
-    color: var(--ck-text) !important;
-    font-size: 0.9rem !important;
+    color: var(--ck-text-primary) !important;
+    font-size: 0.88rem !important;
     cursor: pointer !important;
 }
 
 .woocommerce-checkout #payment ul.payment_methods li label img {
-    max-height: 22px !important;
+    max-height: 20px !important;
     vertical-align: middle !important;
-    margin-left: 8px !important;
+    margin-left: 6px !important;
 }
 
+/* Payment description box */
 .woocommerce-checkout #payment div.payment_box {
     background: var(--ck-surface-raised) !important;
-    border-radius: var(--ck-radius-sm) !important;
-    padding: 14px 16px !important;
-    margin-top: 14px !important;
-    line-height: 1.55 !important;
     border: 1px solid var(--ck-border) !important;
+    border-radius: 8px !important;
+    padding: 12px 14px !important;
+    margin-top: 12px !important;
+    line-height: 1.5 !important;
 }
 
 .woocommerce-checkout #payment div.payment_box::before {
@@ -654,15 +627,15 @@ body.woocommerce-checkout .is-layout-constrained>* {
 
 .woocommerce-checkout #payment div.payment_box p {
     font-family: 'Inter', sans-serif !important;
-    font-size: 0.8rem !important;
+    font-size: 0.78rem !important;
     color: var(--ck-text-secondary) !important;
     margin: 0 !important;
 }
 
 
-/* ──────────────────────────────────────────────
-   12. CTA BUTTON — Premium gradient
-   ────────────────────────────────────────────── */
+/* ══════════════════════════════════════════════
+   12. CTA BUTTON — Solid, confident
+   ══════════════════════════════════════════════ */
 .woocommerce-checkout #payment div.place-order {
     padding: 0 !important;
     width: 100% !important;
@@ -672,39 +645,38 @@ body.woocommerce-checkout .is-layout-constrained>* {
 
 .woocommerce-checkout #place_order {
     width: 100% !important;
-    padding: 18px 24px !important;
+    padding: 16px 24px !important;
     background: var(--ck-cta-bg) !important;
     color: var(--ck-cta-text) !important;
     border: none !important;
-    border-radius: var(--ck-radius-md) !important;
+    border-radius: var(--ck-radius) !important;
     font-family: 'Poppins', sans-serif !important;
-    font-size: 1.1rem !important;
+    font-size: 1.05rem !important;
     font-weight: 700 !important;
     cursor: pointer !important;
-    transition: all var(--ck-transition) !important;
-    box-shadow: 0 4px 20px var(--ck-cta-shadow) !important;
+    transition: background var(--ck-transition), transform 0.15s ease, box-shadow var(--ck-transition) !important;
+    box-shadow: 0 3px 14px var(--ck-cta-shadow) !important;
     text-transform: none !important;
     line-height: 1.4 !important;
-    letter-spacing: -0.01em;
 }
 
 .woocommerce-checkout #place_order:hover {
     background: var(--ck-cta-hover) !important;
     transform: translateY(-1px) !important;
-    box-shadow: 0 8px 28px var(--ck-cta-shadow) !important;
+    box-shadow: 0 6px 22px var(--ck-cta-shadow) !important;
 }
 
 .woocommerce-checkout #place_order:active {
     transform: translateY(0) !important;
-    box-shadow: 0 2px 10px var(--ck-cta-shadow) !important;
+    box-shadow: 0 2px 8px var(--ck-cta-shadow) !important;
 }
 
 
-/* ──────────────────────────────────────────────
-   13. TERMS, PRIVACY, REASSURANCE
-   ────────────────────────────────────────────── */
+/* ══════════════════════════════════════════════
+   13. TERMS + REASSURANCE
+   ══════════════════════════════════════════════ */
 .woocommerce-checkout .woocommerce-terms-and-conditions-wrapper {
-    padding: 0 0 14px 0 !important;
+    padding: 0 0 10px 0 !important;
     text-align: center !important;
 }
 
@@ -712,22 +684,17 @@ body.woocommerce-checkout .is-layout-constrained>* {
     font-family: 'Inter', sans-serif !important;
     font-size: 0.72rem !important;
     color: var(--ck-text-muted) !important;
-    line-height: 1.55 !important;
+    line-height: 1.5 !important;
 }
 
 .woocommerce-checkout .woocommerce-terms-and-conditions-wrapper a {
     color: var(--ck-accent) !important;
-    text-decoration: none !important;
-    transition: color var(--ck-transition) !important;
-}
-
-.woocommerce-checkout .woocommerce-terms-and-conditions-wrapper a:hover {
-    color: var(--ck-accent-bright) !important;
+    text-decoration: underline !important;
 }
 
 .checkout-reassurance {
     text-align: center;
-    padding: 14px 0 0;
+    padding: 10px 0 0;
 }
 
 .checkout-reassurance p {
@@ -738,50 +705,50 @@ body.woocommerce-checkout .is-layout-constrained>* {
 }
 
 
-/* ──────────────────────────────────────────────
-   14. ERROR NOTICES
-   ────────────────────────────────────────────── */
+/* ══════════════════════════════════════════════
+   14. ERRORS
+   ══════════════════════════════════════════════ */
 .woocommerce-checkout .woocommerce-error {
     background: var(--ck-error-bg) !important;
     border: 1px solid var(--ck-error-border) !important;
-    border-radius: var(--ck-radius-md) !important;
-    padding: 14px 18px !important;
-    margin-bottom: 24px !important;
+    border-radius: var(--ck-radius) !important;
+    padding: 12px 16px !important;
+    margin-bottom: 20px !important;
 }
 
 .woocommerce-checkout .woocommerce-error li {
     font-family: 'Inter', sans-serif !important;
-    font-size: 0.85rem !important;
+    font-size: 0.84rem !important;
     color: var(--ck-error-text) !important;
 }
 
 .woocommerce-checkout .form-row.woocommerce-invalid input.input-text {
-    border-color: var(--ck-error-text) !important;
-    box-shadow: 0 0 0 3px rgba(248, 113, 113, 0.08) !important;
+    border-color: #dc4a38 !important;
+    box-shadow: 0 0 0 3px rgba(220, 74, 56, 0.08) !important;
 }
 
 
-/* ──────────────────────────────────────────────
+/* ══════════════════════════════════════════════
    15. LOADING
-   ────────────────────────────────────────────── */
+   ══════════════════════════════════════════════ */
 .woocommerce-checkout .blockUI.blockOverlay {
-    background: rgba(12, 12, 15, 0.7) !important;
+    background: rgba(247, 245, 241, 0.85) !important;
     opacity: 1 !important;
 }
 
-@media (prefers-color-scheme: light) {
+@media (prefers-color-scheme: dark) {
     .woocommerce-checkout .blockUI.blockOverlay {
-        background: rgba(255, 255, 255, 0.8) !important;
+        background: rgba(26, 26, 30, 0.85) !important;
     }
 }
 
 
 /* ══════════════════════════════════════════════
-   16. RESPONSIVE — Tablet (≤ 900px)
+   16. TABLET (≤ 900px)
    ══════════════════════════════════════════════ */
 @media (max-width: 900px) {
     .woocommerce-checkout>.woocommerce {
-        padding: 32px 20px 60px !important;
+        padding: 28px 18px 56px !important;
     }
 
     .woocommerce-checkout form.checkout {
@@ -795,7 +762,7 @@ body.woocommerce-checkout .is-layout-constrained>* {
 
     .woocommerce-checkout h3#order_review_heading {
         grid-column: 1 !important;
-        margin-top: 36px !important;
+        margin-top: 32px !important;
     }
 
     .woocommerce-checkout table.shop_table {
@@ -808,35 +775,36 @@ body.woocommerce-checkout .is-layout-constrained>* {
 
     .woocommerce-checkout #payment {
         grid-column: 1 !important;
+        margin-top: 32px !important;
     }
 }
 
 
 /* ══════════════════════════════════════════════
-   17. RESPONSIVE — Mobile (≤ 600px)
+   17. MOBILE (≤ 600px)
    ══════════════════════════════════════════════ */
 @media (max-width: 600px) {
     .woocommerce-checkout>.woocommerce {
-        padding: 20px 14px 48px !important;
+        padding: 18px 14px 44px !important;
     }
 
     .checkout-summary-banner {
         padding: 16px 18px;
-        border-radius: var(--ck-radius-md);
-        margin-bottom: 28px;
+        border-radius: var(--ck-radius);
+        margin-bottom: 24px;
     }
 
     .checkout-summary-banner__image img,
     .checkout-summary-banner__image .checkout-product-thumb {
-        width: 46px !important;
+        width: 44px !important;
     }
 
     .checkout-summary-banner__title {
-        font-size: 0.92rem !important;
+        font-size: 0.88rem !important;
     }
 
     .checkout-summary-banner__price {
-        font-size: 1.1rem !important;
+        font-size: 1.05rem !important;
     }
 
     .woocommerce-checkout .form-row-first,
@@ -846,25 +814,26 @@ body.woocommerce-checkout .is-layout-constrained>* {
     }
 
     .woocommerce-billing-fields__field-wrapper {
-        gap: 16px !important;
+        gap: 14px !important;
     }
 
     .woocommerce-checkout .form-row input.input-text {
-        padding: 13px 14px !important;
+        padding: 12px 13px !important;
+        font-size: 0.9rem !important;
     }
 
     .woocommerce-checkout table.shop_table {
-        padding: 20px 18px !important;
-        border-radius: var(--ck-radius-md) !important;
+        padding: 18px 16px !important;
+        border-radius: var(--ck-radius) !important;
     }
 
     .woocommerce-checkout #place_order {
-        padding: 16px 20px !important;
-        font-size: 1rem !important;
+        padding: 15px 20px !important;
+        font-size: 0.98rem !important;
     }
 
     .trust-badge {
-        font-size: 0.6rem;
+        font-size: 0.58rem;
         padding: 4px 8px;
     }
 }
