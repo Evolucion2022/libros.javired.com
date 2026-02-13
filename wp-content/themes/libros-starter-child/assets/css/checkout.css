@@ -71,54 +71,7 @@
 }
 
 
-/* ══════════════════════════════════════════════
-   DESIGN TOKENS — Dark Mode
-   ══════════════════════════════════════════════ */
-@media (prefers-color-scheme: dark) {
-    :root {
-        --ck-bg: #1a1a1e;
-        --ck-surface: #242428;
-        --ck-surface-raised: #2a2a2f;
-        --ck-border: #35353b;
-        --ck-border-hover: #48484f;
-        --ck-divider: #30303a;
-
-        --ck-accent: #3da876;
-        --ck-accent-hover: #4cbf88;
-        --ck-accent-soft: rgba(61, 168, 118, 0.1);
-        --ck-accent-ring: rgba(61, 168, 118, 0.2);
-
-        --ck-text-primary: #ededeb;
-        --ck-text-secondary: #a5a39e;
-        --ck-text-muted: #6e6c67;
-        --ck-text-on-accent: #ffffff;
-
-        --ck-input-bg: #2a2a2f;
-        --ck-input-border: #3e3e45;
-        --ck-input-focus-border: var(--ck-accent);
-        --ck-input-focus-ring: var(--ck-accent-ring);
-        --ck-input-placeholder: #55555c;
-
-        --ck-cta-bg: #3da876;
-        --ck-cta-hover: #4cbf88;
-        --ck-cta-text: #ffffff;
-        --ck-cta-shadow: rgba(61, 168, 118, 0.2);
-
-        --ck-banner-bg: linear-gradient(135deg, #1a2e2a 0%, #1f3b35 100%);
-
-        --ck-order-bg: #242428;
-        --ck-order-border: #35353b;
-        --ck-order-shadow: 0 2px 12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.03);
-
-        --ck-badge-bg: rgba(61, 168, 118, 0.1);
-        --ck-badge-text: #3da876;
-        --ck-badge-border: rgba(61, 168, 118, 0.15);
-
-        --ck-error-bg: rgba(185, 28, 28, 0.1);
-        --ck-error-border: rgba(185, 28, 28, 0.2);
-        --ck-error-text: #f87171;
-    }
-}
+/* Dark mode removed — checkout is always light mode */
 
 
 /* ══════════════════════════════════════════════
@@ -736,11 +689,7 @@ body.woocommerce-checkout .is-layout-constrained>* {
     opacity: 1 !important;
 }
 
-@media (prefers-color-scheme: dark) {
-    .woocommerce-checkout .blockUI.blockOverlay {
-        background: rgba(26, 26, 30, 0.85) !important;
-    }
-}
+/* Dark mode loading removed — always light */
 
 
 /* ══════════════════════════════════════════════
