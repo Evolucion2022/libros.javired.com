@@ -1,0 +1,98 @@
+/* ============================================
+   DESIGN TOKENS — Libros Starter Theme
+   Palette: Calma, serenidad, esperanza
+   ============================================ */
+
+:root {
+    /* === COLORES PRINCIPALES === */
+    --teal-deep: #1A3C40;
+    --teal-mid: #2E5250;
+    --teal-light: #3D6B68;
+    --sage-green: #3CB371;
+    --sage-dark: #2D8F59;
+    --sage-light: #E8F5E9;
+    --cream: #FEFCF3;
+    --cream-dark: #F5F0E3;
+    --warm-white: #FFFFFF;
+    --gray-soft: #6B7B7A;
+    --gray-light: #D4D9D8;
+    --gray-ultra: #F0F2F1;
+    --coral-soft: #E8A598;
+    --gold-warm: #D4A574;
+
+    /* Gradientes */
+    --gradient-hero: linear-gradient(135deg, #1A3C40 0%, #2E5250 50%, #3D6B68 100%);
+    --gradient-cta: linear-gradient(135deg, #3CB371 0%, #2D8F59 100%);
+    --gradient-cta-hover: linear-gradient(135deg, #2D8F59 0%, #247A4A 100%);
+    --gradient-section: linear-gradient(180deg, var(--cream) 0%, var(--warm-white) 100%);
+    --gradient-dark: linear-gradient(180deg, #1A3C40 0%, #0F2528 100%);
+
+    /* === TIPOGRAFÍA === */
+    --font-heading: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-accent: 'Poppins', var(--font-body);
+
+    /* Tamaños (Mobile First) */
+    --text-xs: 0.75rem;
+    --text-sm: 0.875rem;
+    --text-base: 1rem;
+    --text-md: 1.125rem;
+    --text-lg: 1.25rem;
+    --text-xl: 1.5rem;
+    --text-2xl: 2rem;
+    --text-3xl: 2.5rem;
+    --text-4xl: 3rem;
+    --text-5xl: 3.5rem;
+
+    --leading-tight: 1.2;
+    --leading-normal: 1.6;
+    --leading-relaxed: 1.8;
+
+    /* === ESPACIADO (8px grid) === */
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-5: 1.5rem;
+    --space-6: 2rem;
+    --space-8: 3rem;
+    --space-10: 4rem;
+    --space-12: 5rem;
+    --space-16: 6rem;
+    --space-20: 8rem;
+
+    /* === LAYOUT === */
+    --max-width: 1200px;
+    --max-width-text: 720px;
+    --max-width-narrow: 600px;
+    --container-padding: var(--space-5);
+
+    /* === BORDES Y SOMBRAS === */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --radius-full: 9999px;
+
+    --shadow-sm: 0 1px 3px rgba(26, 60, 64, 0.06);
+    --shadow-md: 0 4px 12px rgba(26, 60, 64, 0.08);
+    --shadow-lg: 0 8px 30px rgba(26, 60, 64, 0.12);
+    --shadow-xl: 0 16px 48px rgba(26, 60, 64, 0.16);
+    --shadow-glow: 0 0 40px rgba(60, 179, 113, 0.15);
+
+    /* === TRANSICIONES === */
+    --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+    --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --duration-fast: 200ms;
+    --duration-base: 350ms;
+    --duration-slow: 600ms;
+    --duration-reveal: 800ms;
+
+    /* === Z-INDEX === */
+    --z-base: 1;
+    --z-above: 10;
+    --z-sticky: 100;
+    --z-modal: 1000;
+    --z-popup: 1100;
+    --z-toast: 1200;
+}
