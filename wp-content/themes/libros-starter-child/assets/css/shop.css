@@ -159,10 +159,12 @@ body.tax-product_cat .site-footer {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    max-width: 1320px;
-    margin: 0 auto;
+    max-width: 1320px !important;
+    margin: 0 auto !important;
     padding: 0 24px;
     height: 68px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 /* Logo */
@@ -706,14 +708,16 @@ body.tax-product_cat .site-footer {
 }
 
 .shop-categories__inner {
-    max-width: 1320px;
-    margin: 0 auto;
+    max-width: 1320px !important;
+    margin: 0 auto !important;
     padding: 16px 24px;
     display: flex;
     gap: 8px;
     overflow-x: auto;
     scrollbar-width: none;
     -ms-overflow-style: none;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .shop-categories__inner::-webkit-scrollbar {
@@ -759,10 +763,14 @@ body.tax-product_cat .site-footer {
 /* ─────────────────────────────────────────────
    5. PRODUCT GRID
    ───────────────────────────────────────────── */
+main.shop-main,
 .shop-main {
-    max-width: 1320px;
-    margin: 0 auto;
-    padding: 40px 24px 80px;
+    max-width: 1320px !important;
+    margin: 0 auto !important;
+    padding: 40px 24px 80px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    display: block !important;
 }
 
 .shop-grid-header {
@@ -1028,8 +1036,10 @@ body.tax-product_cat .site-footer {
 }
 
 .shop-footer__inner {
-    max-width: 1320px;
-    margin: 0 auto;
+    max-width: 1320px !important;
+    margin: 0 auto !important;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .shop-footer__grid {
