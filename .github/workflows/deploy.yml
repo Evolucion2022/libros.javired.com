@@ -13,10 +13,9 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
 
-      # --------------------------------------------------
-      # 1. Generate wp-config.php from deploy template
-      # --------------------------------------------------
       - name: Generate wp-config.php
         run: |
           cp wp-config-deploy.php wp-config.php
@@ -25,11 +24,8 @@ jobs:
           sed -i "s|{{DB_PASSWORD}}|${{ secrets.DB_PASSWORD }}|g" wp-config.php
           sed -i "s|{{DB_HOST}}|${{ secrets.DB_HOST }}|g" wp-config.php
 
-      # --------------------------------------------------
-      # 2. Deploy files via FTP (only changed files, no delete)
-      # --------------------------------------------------
       - name: Deploy via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.6
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
@@ -46,9 +42,6 @@ jobs:
             README.md
             *.sql
 
-      # --------------------------------------------------
-      # 3. Import database if SQL changed (via SSH)
-      # --------------------------------------------------
       - name: Check for DB changes
         id: db_check
         run: |
