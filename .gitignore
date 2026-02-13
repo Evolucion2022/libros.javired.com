@@ -37,6 +37,8 @@ wp-content/backups/
 error_log
 *.log
 wp-content/debug.log
+deploy.log
+.last_sql_hash
 
 # === Directorios del servidor ===
 .well-known/

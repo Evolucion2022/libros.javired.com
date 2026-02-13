@@ -1,0 +1,18 @@
+---
+deployment:
+  tasks:
+    # Copy wp-content (themes + plugins) to the site directory
+    - export DEPLOYPATH=/home/yzibhssy/libros.javired.com
+    # Sync themes
+    - /bin/cp -rf wp-content/themes/* $DEPLOYPATH/wp-content/themes/
+    # Sync plugins
+    - /bin/cp -rf wp-content/plugins/* $DEPLOYPATH/wp-content/plugins/
+    # Sync .htaccess
+    - /bin/cp -f .htaccess $DEPLOYPATH/.htaccess
+    # Generate wp-config.php from deploy template if it changed
+    - >-
+      if [ -f wp-config-deploy.php ]; then
+        /bin/cp -f wp-config-deploy.php $DEPLOYPATH/wp-config-deploy.php;
+      fi
+    # Log deployment
+    - echo "Deployed at $(date)" >> $DEPLOYPATH/deploy.log
