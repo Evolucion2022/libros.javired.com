@@ -641,6 +641,14 @@ body.page-template-front-page .shop-header__inner {
     height: 16px;
 }
 
+[data-theme="dark"] .home-product-card__cta {
+    color: #0D1210;
+}
+
+[data-theme="dark"] .home-product-card__cta:hover {
+    color: #0D1210;
+}
+
 .home-products__more {
     text-align: center;
     margin-top: 40px;

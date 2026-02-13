@@ -1021,6 +1021,14 @@ main.shop-main,
     height: 16px;
 }
 
+[data-theme="dark"] .shop-card__cta {
+    color: #0D1210;
+}
+
+[data-theme="dark"] .shop-card__cta:hover {
+    color: #0D1210;
+}
+
 /* ─────────────────────────────────────────────
    7. EMPTY STATE
    ───────────────────────────────────────────── */
