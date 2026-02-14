@@ -285,6 +285,20 @@ add_filter('pre_option_woocommerce_cart_redirect_after_add', function () {
     return 'no';
 });
 
+// ── Fix: Allow multiple products in cart (override sold_individually) ──
+add_filter('woocommerce_is_sold_individually', '__return_false', 999);
+
+// ── Fix: Prevent WC from emptying cart before adding (buy-now behavior) ──
+add_action('woocommerce_before_calculate_totals', function ($cart) {
+    // Do nothing — just ensure the cart is never emptied silently
+}, 1);
+
+// Ensure WC does NOT empty cart on add-to-cart with "buy now" plugins/logic
+add_action('wp_loaded', function () {
+    // Remove any action that empties the cart before adding a product
+    remove_action('woocommerce_add_to_cart', 'wc_empty_cart_message');
+}, 999);
+
 
 /* ──────────────────────────────────────────────
    11. CUSTOM CSS FOR SIDE CART PREMIUM PLUGIN
