@@ -130,6 +130,19 @@ add_action('wp_enqueue_scripts', function () {
             );
         }
     }
+
+    // Cart CSS (only on cart page)
+    if (function_exists('is_cart') && is_cart()) {
+        $cart_css = get_stylesheet_directory() . '/assets/css/cart.css';
+        if (file_exists($cart_css)) {
+            wp_enqueue_style(
+                'libros-cart',
+                get_stylesheet_directory_uri() . '/assets/css/cart.css',
+                ['libros-shop'],
+                filemtime($cart_css)
+            );
+        }
+    }
 }, 999);
 
 
@@ -236,9 +249,9 @@ add_filter('template_include', function ($template) {
         }
     }
 
-    // Cart page → use our custom WC wrapper (woocommerce.php handles it)
+    // Cart page → use our custom cart template
     if (function_exists('is_cart') && is_cart()) {
-        $custom = get_stylesheet_directory() . '/woocommerce.php';
+        $custom = get_stylesheet_directory() . '/template-cart.php';
         if (file_exists($custom)) {
             return $custom;
         }
