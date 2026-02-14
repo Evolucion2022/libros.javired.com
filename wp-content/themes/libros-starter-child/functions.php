@@ -288,16 +288,33 @@ add_filter('pre_option_woocommerce_cart_redirect_after_add', function () {
 // ── Fix: Allow multiple products in cart (override sold_individually) ──
 add_filter('woocommerce_is_sold_individually', '__return_false', 999);
 
-// ── Fix: Prevent WC from emptying cart before adding (buy-now behavior) ──
-add_action('woocommerce_before_calculate_totals', function ($cart) {
-    // Do nothing — just ensure the cart is never emptied silently
+// ── Fix: Prevent server-level cache from stripping WC session cookies ──
+// This is critical on LiteSpeed/cPanel shared hosting
+add_action('send_headers', function () {
+    // If user has WC session cookie, tell caches NOT to cache this response
+    foreach ($_COOKIE as $name => $val) {
+        if (strpos($name, 'wp_woocommerce_session_') === 0 || strpos($name, 'woocommerce_cart_hash') === 0) {
+            nocache_headers();
+            header('X-LiteSpeed-Cache-Control: no-cache');
+            return;
+        }
+    }
+
+    // Also exclude WC pages from server cache
+    if (function_exists('is_cart') && (is_cart() || is_checkout() || is_account_page())) {
+        nocache_headers();
+        header('X-LiteSpeed-Cache-Control: no-cache');
+    }
 }, 1);
 
-// Ensure WC does NOT empty cart on add-to-cart with "buy now" plugins/logic
-add_action('wp_loaded', function () {
-    // Remove any action that empties the cart before adding a product
-    remove_action('woocommerce_add_to_cart', 'wc_empty_cart_message');
-}, 999);
+// Force WC to initialize customer session early for guest users
+add_action('woocommerce_init', function () {
+    if (is_admin())
+        return;
+    if (WC()->session && !WC()->session->has_session()) {
+        WC()->session->set_customer_session_cookie(true);
+    }
+});
 
 
 /* ──────────────────────────────────────────────
