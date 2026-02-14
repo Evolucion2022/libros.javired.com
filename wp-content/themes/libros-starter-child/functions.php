@@ -265,21 +265,15 @@ add_filter('template_include', function ($template) {
    10. WC AJAX ADD-TO-CART + SIDE CART INTEGRATION
    ────────────────────────────────────────────── */
 
-// Enable WooCommerce AJAX add-to-cart on archive pages
-add_filter('woocommerce_product_add_to_cart_url', function ($url, $product) {
-    if ($product->is_type('simple')) {
-        return $product->add_to_cart_url();
-    }
-    return $url;
-}, 10, 2);
-
 // Disable redirect after add to cart (let side cart handle it)
 add_filter('woocommerce_add_to_cart_redirect', '__return_false');
 
-// Ensure AJAX add-to-cart fragments are supported
-add_theme_support('wc-product-gallery-zoom');
-add_theme_support('wc-product-gallery-lightbox');
-add_theme_support('wc-product-gallery-slider');
+// WC product gallery support (must be in after_setup_theme)
+add_action('after_setup_theme', function () {
+    add_theme_support('wc-product-gallery-zoom');
+    add_theme_support('wc-product-gallery-lightbox');
+    add_theme_support('wc-product-gallery-slider');
+});
 
 // Force WooCommerce to enable AJAX add-to-cart on archives
 add_filter('pre_option_woocommerce_enable_ajax_add_to_cart', function () {
