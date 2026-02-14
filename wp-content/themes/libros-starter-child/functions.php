@@ -223,3 +223,27 @@ add_action('wp_enqueue_scripts', function () {
     );
 });
 
+
+/* ──────────────────────────────────────────────
+   9. CUSTOM TEMPLATES FOR WC PAGES (account, cart)
+   ────────────────────────────────────────────── */
+add_filter('template_include', function ($template) {
+    // My Account page → use our custom template with header + footer
+    if (function_exists('is_account_page') && is_account_page()) {
+        $custom = get_stylesheet_directory() . '/template-account.php';
+        if (file_exists($custom)) {
+            return $custom;
+        }
+    }
+
+    // Cart page → use our custom WC wrapper (woocommerce.php handles it)
+    if (function_exists('is_cart') && is_cart()) {
+        $custom = get_stylesheet_directory() . '/woocommerce.php';
+        if (file_exists($custom)) {
+            return $custom;
+        }
+    }
+
+    return $template;
+}, 999);
+
