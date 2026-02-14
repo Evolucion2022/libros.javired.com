@@ -117,6 +117,19 @@ add_action('wp_enqueue_scripts', function () {
             true
         );
     }
+
+    // Account Dashboard CSS (only on account pages)
+    if (function_exists('is_account_page') && is_account_page()) {
+        $account_css = get_stylesheet_directory() . '/assets/css/account.css';
+        if (file_exists($account_css)) {
+            wp_enqueue_style(
+                'libros-account',
+                get_stylesheet_directory_uri() . '/assets/css/account.css',
+                ['libros-shop'],
+                filemtime($account_css)
+            );
+        }
+    }
 }, 999);
 
 

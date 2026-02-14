@@ -1,0 +1,244 @@
+/* ─────────────────────────────────────────────
+   PREMIUM MY ACCOUNT DASHBOARD STYLES
+   ───────────────────────────────────────────── */
+
+:root {
+    --account-gap: 24px;
+    --account-card-bg: #FFFFFF;
+    --account-card-border: #E2E8F0;
+    --account-text: #1E293B;
+    --account-text-muted: #64748B;
+    --account-accent: var(--shop-accent, #14532D);
+    --account-radius: 16px;
+    --account-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+    --account-shadow-hover: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] {
+    --account-card-bg: #1C2128;
+    --account-card-border: #2D3748;
+    --account-text: #E6E1DB;
+    --account-text-muted: #9BA3A6;
+    --account-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.2);
+    --account-shadow-hover: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+}
+
+/* ── Hide Default Navigation (Sidebar) ── */
+.woocommerce-MyAccount-navigation {
+    display: none;
+}
+
+.woocommerce-MyAccount-content {
+    width: 100% !important;
+    float: none !important;
+}
+
+/* ── Welcome Banner ── */
+.account-welcome {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 40px;
+    padding: 32px;
+    background: linear-gradient(135deg, var(--account-card-bg) 0%, rgba(255, 255, 255, 0.05) 100%);
+    border: 1px solid var(--account-card-border);
+    border-radius: var(--account-radius);
+    box-shadow: var(--account-shadow-sm);
+}
+
+[data-theme="dark"] .account-welcome {
+    background: linear-gradient(135deg, #1C2128 0%, #161B22 100%);
+    border-color: #2D3748;
+}
+
+.account-welcome__avatar img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--account-accent);
+}
+
+.account-welcome__info h2 {
+    margin: 0 0 8px;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--account-text);
+}
+
+.account-welcome__info p {
+    margin: 0;
+    color: var(--account-text-muted);
+    font-size: 1rem;
+}
+
+/* ── Dashboard Grid (Cards) ── */
+.account-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--account-gap);
+    margin-bottom: 40px;
+}
+
+.account-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 32px;
+    background: var(--account-card-bg);
+    border: 1px solid var(--account-card-border);
+    border-radius: var(--account-radius);
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+}
+
+.account-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--account-shadow-hover);
+    border-color: var(--account-accent);
+}
+
+.account-card__icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--shop-accent-light, rgba(20, 83, 45, 0.1));
+    color: var(--account-accent);
+    border-radius: 12px;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+}
+
+.account-card:hover .account-card__icon {
+    background: var(--account-accent);
+    color: #FFFFFF;
+    transform: scale(1.1);
+}
+
+[data-theme="dark"] .account-card:hover .account-card__icon {
+    color: #0D1210;
+    /* Dark text on bright accent */
+}
+
+.account-card__title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--account-text);
+    margin-bottom: 8px;
+}
+
+.account-card__desc {
+    font-size: 0.95rem;
+    color: var(--account-text-muted);
+    line-height: 1.5;
+    margin-bottom: 24px;
+}
+
+.account-card__arrow {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--account-accent);
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.3s ease;
+}
+
+.account-card:hover .account-card__arrow {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+    .account-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .account-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .account-welcome {
+        flex-direction: column;
+        text-align: center;
+        padding: 24px;
+    }
+
+    .account-welcome__info h2 {
+        font-size: 1.5rem;
+    }
+}
+
+/* ── Order/Address Tables Adjustments ── */
+.woocommerce-orders-table,
+.woocommerce-table--order-details,
+.woocommerce-table--downloads {
+    border-collapse: separate;
+    border-spacing: 0;
+    width: 100%;
+    margin-bottom: 24px;
+    background: var(--account-card-bg);
+    border-radius: var(--account-radius);
+    overflow: hidden;
+    border: 1px solid var(--account-card-border);
+}
+
+.woocommerce table.shop_table th {
+    background: var(--shop-bg-subtle, #F8FAFC);
+    padding: 16px 20px;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+}
+
+[data-theme="dark"] .woocommerce table.shop_table th {
+    background: #161B22;
+}
+
+.woocommerce table.shop_table td {
+    padding: 16px 20px;
+    border-top: 1px solid var(--account-card-border);
+}
+
+/* ── Back Button (Sub-pages) ── */
+.account-nav-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 32px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--account-card-border);
+}
+
+.account-back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    background: var(--account-card-bg);
+    border: 1px solid var(--account-card-border);
+    border-radius: 8px;
+    color: var(--account-text);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+}
+
+.account-back-btn:hover {
+    border-color: var(--account-accent);
+    color: var(--account-accent);
+    transform: translateX(-2px);
+}
