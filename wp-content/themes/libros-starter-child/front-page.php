@@ -237,7 +237,7 @@ function libros_get_cat_icon($cat_name, $icons)
                     }
                 }
 
-                $cart_add_url = add_query_arg('add-to-cart', $pid, wc_get_cart_url());
+                $cart_add_url = esc_url($product->add_to_cart_url());
                 ?>
                 <article class="home-product-card home-reveal">
                     <div class="home-product-card__image">
@@ -305,7 +305,10 @@ function libros_get_cat_icon($cat_name, $icons)
                             <?php endif; ?>
                         </div>
 
-                        <a href="<?php echo esc_url($cart_add_url); ?>" class="home-product-card__cta">
+                        <a href="<?php echo esc_url($cart_add_url); ?>"
+                            class="home-product-card__cta add_to_cart_button ajax_add_to_cart"
+                            data-product_id="<?php echo esc_attr($pid); ?>" data-quantity="1"
+                            aria-label="Añadir <?php echo esc_attr($title); ?> al carrito">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0" />
                             </svg>
